@@ -49,7 +49,7 @@ You may choose to collect and curate your Golden Dataset using any tool of your 
 
 Taking into account the above suggested process, you’ll end up with a structure similar to the following:
 
-![](media/cc82e3f20634bb5cca9b41d7257dbb15.png)
+![](media/excel-template.png)
 
 From the above example Excel template, the required CSV (with “Question” and “Answer” columns at a minimum) can be exported.
 
