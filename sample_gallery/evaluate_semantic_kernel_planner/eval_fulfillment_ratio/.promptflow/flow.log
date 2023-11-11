@@ -1,0 +1,6 @@
+2023-11-07 14:08:41 +0800   23528 execution.flow     INFO     Start to run 1 nodes with concurrency level 16.
+2023-11-07 14:08:41 +0800   23528 execution.flow     INFO     Executing node calculate. node run id: b86ee51d-bd74-4502-a2f3-b5d6b9820621_calculate_0
+2023-11-07 14:08:44 +0800   23528 execution.flow     INFO     Node calculate completes.
+2023-11-07 14:08:44 +0800   23528 execution.flow     INFO     Start to run 1 nodes with concurrency level 16.
+2023-11-07 14:08:44 +0800   23528 execution.flow     INFO     Executing node aggregate. node run id: 67de686e-9556-42f3-888a-7d80af893221_aggregate_reduce
+2023-11-07 14:08:44 +0800   23528 execution.flow     INFO     Node aggregate completes.

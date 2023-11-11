@@ -1,0 +1,11 @@
+{
+  "nodes": {
+    "Semantic_Kernel_Stepwise_Planner_u8ik": {
+      "variant_0": {
+        "inputs": {
+          "intent": []
+        }
+      }
+    }
+  }
+}

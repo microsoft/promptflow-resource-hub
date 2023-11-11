@@ -1,0 +1,35 @@
+id: template_eval_flow
+name: Template Evaluation Flow
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  ask:
+    type: string
+    default: How many sheep would you have if you started with 3 and got 2 more?
+  answer:
+    type: string
+    default: "5"
+outputs:
+  Fulfillment Ratio:
+    type: string
+    reference: ${calculate.output}
+nodes:
+- name: aggregate
+  type: python
+  source:
+    type: code
+    path: aggregate.py
+  inputs:
+    processed_results: ${calculate.output}
+  aggregation: true
+- name: calculate
+  type: llm
+  source:
+    type: code
+    path: calculate.jinja2
+  inputs:
+    deployment_name: gpt-4
+    answer: ${inputs.answer}
+    ask: ${inputs.ask}
+  connection: azure_open_ai_connection
+  api: chat

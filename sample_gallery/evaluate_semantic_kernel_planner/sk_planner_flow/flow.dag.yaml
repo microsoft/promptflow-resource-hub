@@ -1,0 +1,22 @@
+inputs:
+  ask:
+    type: string
+    default: What is the sum of 110 and 990?
+outputs:
+  answer:
+    type: string
+    reference: ${planner.output.result}
+  steps:
+    type: string
+    reference: ${planner.output.steps}
+nodes:
+- name: planner
+  type: python
+  source:
+    type: code
+    path: planner.py
+  inputs:
+    conn: custom_connection
+    ask: ${inputs.ask}
+    model: gpt-4-32k
+    aoai_deployment: gpt-4-32k

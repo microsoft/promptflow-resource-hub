@@ -1,0 +1,19 @@
+{
+  "nodes": {
+    "calculate": {
+      "variant_0": {
+        "inputs": {
+          "answer": [],
+          "ask": []
+        }
+      }
+    },
+    "aggregate": {
+      "variant_0": {
+        "inputs": {
+          "processed_results": []
+        }
+      }
+    }
+  }
+}
