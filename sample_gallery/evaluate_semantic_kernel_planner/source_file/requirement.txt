@@ -1,0 +1,6 @@
+semantic-kernel==0.3.10.dev0
+promptflow[azure]
+promptflow-tools
+openai
+jinja2
+python-dotenv

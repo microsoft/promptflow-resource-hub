@@ -9,10 +9,13 @@ inputs:
   answer:
     type: string
     default: "5"
+  groundtruth_answer:
+    type: string
+    default: "5"
 outputs:
   Fulfillment Ratio:
     type: string
-    reference: ${calculate.output}
+    reference: ${final_result.output}
 nodes:
 - name: aggregate
   type: python
@@ -20,7 +23,7 @@ nodes:
     type: code
     path: aggregate.py
   inputs:
-    processed_results: ${calculate.output}
+    processed_results: ${final_result.output}
   aggregation: true
 - name: calculate
   type: llm
@@ -33,3 +36,31 @@ nodes:
     ask: ${inputs.ask}
   connection: azure_open_ai_connection
   api: chat
+  activate:
+    when: ${If_standard_answer.output}
+    is: true
+- name: If_standard_answer
+  type: python
+  source:
+    type: code
+    path: If_standard_answer.py
+  inputs:
+    groundtruth_answer: ${inputs.groundtruth_answer}
+- name: calculate_standard_answer
+  type: python
+  source:
+    type: code
+    path: calculate_standard_answer.py
+  inputs:
+    answer: ${inputs.answer}
+  activate:
+    when: ${If_standard_answer.output}
+    is: false
+- name: final_result
+  type: python
+  source:
+    type: code
+    path: final_result.py
+  inputs:
+    input1: ${calculate.output}
+    input2: ${calculate_standard_answer.output}

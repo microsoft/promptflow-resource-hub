@@ -47,6 +47,47 @@
         }
       },
       "source": "calculate.jinja2"
+    },
+    "If_standard_answer.py": {
+      "type": "python",
+      "inputs": {
+        "groundtruth_answer": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "If_standard_answer.py",
+      "function": "my_python_tool"
+    },
+    "calculate_standard_answer.py": {
+      "type": "python",
+      "inputs": {
+        "answer": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "calculate_standard_answer.py",
+      "function": "my_python_tool"
+    },
+    "final_result.py": {
+      "type": "python",
+      "inputs": {
+        "input1": {
+          "type": [
+            "string"
+          ]
+        },
+        "input2": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "final_result.py",
+      "function": "my_python_tool"
     }
   }
 }
