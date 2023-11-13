@@ -1,0 +1,11 @@
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Start to run 4 nodes with concurrency level 16.
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Executing node If_standard_answer. node run id: ceb923dc-9f44-4fc1-a4b3-77645bd7acca_If_standard_answer_0
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Node If_standard_answer completes.
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Bypassing node calculate. node run id: ceb923dc-9f44-4fc1-a4b3-77645bd7acca_calculate_0
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Executing node calculate_standard_answer. node run id: ceb923dc-9f44-4fc1-a4b3-77645bd7acca_calculate_standard_answer_0
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Node calculate_standard_answer completes.
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Executing node final_result. node run id: ceb923dc-9f44-4fc1-a4b3-77645bd7acca_final_result_0
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Node final_result completes.
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Start to run 1 nodes with concurrency level 16.
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Executing node aggregate. node run id: af08863f-ae92-4e70-9755-6dd71b6af672_aggregate_reduce
+2023-11-12 15:28:32 +0800    2764 execution.flow     INFO     Node aggregate completes.

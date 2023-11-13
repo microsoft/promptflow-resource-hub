@@ -1,0 +1,108 @@
+{
+  "package": {
+    "promptflow_vectordb.tool.vector_index_lookup.VectorIndexLookup.search": {
+      "name": "Vector Index Lookup",
+      "description": "Search text or vector based query from AzureML Vector Index.",
+      "type": "python",
+      "module": "promptflow_vectordb.tool.vector_index_lookup",
+      "class_name": "VectorIndexLookup",
+      "function": "search",
+      "inputs": {
+        "path": {
+          "type": [
+            "string"
+          ]
+        },
+        "query": {
+          "type": [
+            "object"
+          ]
+        },
+        "top_k": {
+          "default": "3",
+          "type": [
+            "int"
+          ]
+        }
+      },
+      "package": "promptflow-vectordb",
+      "package_version": "0.1.0"
+    },
+    "skpf.tools.planners.stepwise": {
+      "description": "Incorporate Semantic Kernel Stepwise Planner into prompt flow.",
+      "function": "stepwise",
+      "inputs": {
+        "connection": {
+          "type": [
+            "AzureOpenAIConnection",
+            "OpenAIConnection"
+          ]
+        },
+        "deployment_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "AzureOpenAIConnection"
+          ],
+          "capabilities": {
+            "completion": true,
+            "chat_completion": true,
+            "embeddings": false
+          },
+          "model_list": [
+            "gpt-35-turbo",
+            "gpt-4",
+            "text-davinci-003"
+          ]
+        },
+        "file_path": {
+          "type": [
+            "file_path"
+          ]
+        },
+        "intent": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "module": "skpf.tools.planners",
+      "name": "Semantic Kernel Stepwise Planner",
+      "type": "python",
+      "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACe0lEQVR4nKWTS2xNURSGv73Puff00lZuG6IeQbXEq4NqlDQeEc+URCRXaGiCEM8mBowoTWvQSZF4jJEYEDFhwkARQQeikWjaoB5BJeqW9j7POXsZnGppmhjYs/3/e/9Za/3/UteJCf9x9D9fqNGwYXB0AaVQVkCJCIL8xRnxYBAbRUAh4uH6SQAsJ4zlhIIPWmEkS07BOLRlAzJCQCmMcolMLGTK+iWkiVPWXMPcEzGyOoFrEsyv30bl1cOIY0CPqEBbGleSzGvYwvTaZWQYIBTNJVyYS8p8p3RnNdNql9O27yJ+0kWJHhZQlsb1khSWzqZ47yr6XrwHBKUU6S9xJpdVsqBpK4+qT5P42IOlw4gI9lDp+OhQmPLzu/l0q42xxRMI6bG4P1NEK4opqCjh6fZzxDvfErbyEN8fHKJSoAXPT1F17Sj9nZ95tuMcBYtKCJkIbnyASRsrcIry+Xq/nZA1BjFmuG0Rg+snqGjZj5dO86SuhWSil4E3X6m6coyZB9bS0XSTeFs3K+424Pop0DKUBU0Yqi4fY9aRat5dfsiMTSspP7mL8Uvn4PYl+faoA4DHB5uJFEVZfKmOjP8zsFWBDjtj6G17Td/zbpbfO86sQxuYWx/jx8sPtNadItM7QE5RFKM8Wlc3MHnzIhY27sEni1Ia7faneHXhBg/WNdJ19g5eIk3nmds8rTlDxIrS1/6O3iddOJJHsucbD9Y0ES2fQX7xVDyTQV0nJtq28LwshiyOk082k0BhYWFj8ACFQqOUwpdskFA7B/G8wEbj+WhlY+kQXiaLrR1Egj1QygrGPXj/7b94gbA95IcI4gfBEfPH8oxY9mEucOEXVHIIywBn9vkAAAAASUVORK5CYII=",
+      "package": "skpf",
+      "package_version": "0.0.6"
+    }
+  },
+  "code": {
+    "planner.py": {
+      "type": "python",
+      "inputs": {
+        "ask": {
+          "type": [
+            "string"
+          ]
+        },
+        "model": {
+          "type": [
+            "string"
+          ]
+        },
+        "aoai_deployment": {
+          "type": [
+            "string"
+          ]
+        },
+        "conn": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "planner.py",
+      "function": "my_python_tool"
+    }
+  }
+}

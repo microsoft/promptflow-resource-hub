@@ -4,7 +4,7 @@ Guidance for creating Golden Datasets used for Copilot quality assurance
 
 ## **The Need for Golden Datasets**
 
-When designing and developing Copilot experiences, you’ll want to make sure that the design and implementation decisions you take contribute to a better customer experience. Such decisions, such as the choice of Large Language Model (LLM), its parameters, construction of the prompt or retrieval of context for the prompt) influence to a great extent the usefulness, adoptability and quality of your end product; as such it’s important to back those up with a methodology, starting from the desired end-customer experience. This guide describes how such methodology can leverage a so-called “golden dataset” to guide and improve decision-making.
+When designing and developing Copilot experiences, you’ll want to make sure that the design and implementation decisions you take contribute to a better customer experience. Such decisions, such as the choice of Large Language Model (LLM), its parameters, construction of the prompt or retrieval of context for the prompt influence to a great extent the usefulness, adoptability and quality of your end product; as such it’s important to back those up with a methodology, starting from the desired end-customer experience. This guide describes how such methodology can leverage a so-called “golden dataset” to guide and improve decision-making.
 
 As you create the Copilot experience that use those LLMs, you typically rely on source datasets (typically internal datasets, documents, websites, …) to ground the model in your own data for context and make sure they don’t hallucinate. Even then, you still want to ensure that the LLMs produce the most accurate and helpful response possible for the question the customer asked. This is even more important considering, you might want to evaluate more than one LLM with different parameter values and multiple ways to prompt each of those; all decisions which all influence the response that is ultimately presented to the customer.
 
@@ -49,7 +49,7 @@ You may choose to collect and curate your Golden Dataset using any tool of your 
 
 Taking into account the above suggested process, you’ll end up with a structure similar to the following:
 
-![](media/excel-template.png)
+![template](media/excel-template.png)
 
 From the above example Excel template, the required CSV (with “Question” and “Answer” columns at a minimum) can be exported.
 

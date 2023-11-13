@@ -1,0 +1,14 @@
+{
+  "answer": "1100",
+  "steps": [
+    [
+      "Adds value to a value",
+      ":",
+      {
+        "variables": {
+          "input": ""
+        }
+      }
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+# name: sk_planner_flow_default_20231113_135701_021000
+display_name: sk_planner_flow_${variant_id}_${timestamp} # supported macros: ${variant_id},${timestamp},${run}
+flow: ./sk_planner_flow
+data: ./source_file/data.jsonl
+#run: <Uncomment to select a run input>
+column_mapping:
+  ask: ${data.ask}
+environment_variables:
+  PF_WORKER_COUNT: "2" # number of workers to run in parallel

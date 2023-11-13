@@ -1,0 +1,41 @@
+{
+  "nodes": {
+    "calculate": {
+      "variant_0": {
+        "inputs": {
+          "answer": [],
+          "ask": []
+        }
+      }
+    },
+    "aggregate": {
+      "variant_0": {
+        "inputs": {
+          "processed_results": []
+        }
+      }
+    },
+    "If_standard_answer": {
+      "variant_0": {
+        "inputs": {
+          "groundtruth_answer": []
+        }
+      }
+    },
+    "calculate_standard_answer": {
+      "variant_0": {
+        "inputs": {
+          "answer": []
+        }
+      }
+    },
+    "final_result": {
+      "variant_0": {
+        "inputs": {
+          "input1": [],
+          "input2": []
+        }
+      }
+    }
+  }
+}
