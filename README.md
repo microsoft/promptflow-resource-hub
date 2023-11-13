@@ -1,6 +1,6 @@
 # Prompt flow ecosystem
 
-Welcome to the **prompt flow ecosystem** - a comprehensive gallery that showcases a variety of use cases demonstrating the potential of prompt flow in building high-quality AI applications.
+Welcome to the **prompt flow ecosystem** - a comprehensive gallery that showcases a variety of use cases demonstrating the the capabilities of prompt flow in building high-quality AI applications.
 
 Here are some common use cases that we've facilitated:
 
@@ -10,7 +10,7 @@ In addition, we also provide best practices for:
 
 * [**Golden dataset preparation**](./sample_gallery/golden_dataset/copilot-golden-dataset-creation-guidance.md): Learn how to prepare a golden dataset for your AI application evaluation.
 
-Our Ecosystem serves as a practical guide, providing detailed walkthroughs of each use case for industry, how to effectively leverage prompt flow in your AI application development process.
+Our Ecosystem serves as a practical guide, providing detailed walkthroughs of each use case for industry, and how to effectively leverage prompt flow in your AI application development process.
 
 ## Getting started
 
@@ -26,4 +26,7 @@ More information about the SDK installation can be found [here](https://github.c
 
 Search for `promptflow` in the VS code extension marketplace and install the extension.
 
-More information about the SDK installation can be found [here](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow).
+More information about the extension can be found [here](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow).
+
+## Practicing
+Go to the [sample gallery](./sample_gallery), you can find more samples here, you can follow the tutorial to start practicing on a specific use case.
