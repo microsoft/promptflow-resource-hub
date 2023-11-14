@@ -11,6 +11,14 @@ In this tutorial we will use prompt flow open-sourced version, which is the pure
 
 ## PostgreSQL/CosmosDB setup
 
+[Azure Cosmos DB for PostgreSQL](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/) is a managed service for PostgreSQL extended with the [Citus open source](https://github.com/citusdata/citus) superpower of distributed *tables*.
+
+To create a PostgreSQL database on Azure, you can:
+1. Go to Azure portal, select `Create` to create the Azure resource in your subscription. Then s
+1. Select the `Azure Cosmos DB` resource type, select `PostgreSQL`.
+1. Then you can follow the [Create an Azure Cosmos DB for PostgreSQL cluster in the Azure portal](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/quickstart-create-portal?tabs=direct) tutorial to complete the resource configuration as your needs.
+
+![Create an Azure Cosmos DB account](./media/Create%20an%20Azure%20Cosmos%20DB%20account.png)
 
 ## Database setup
 
@@ -42,3 +50,23 @@ id,account_number,account_type,balance,account_holder_name,date_of_birth,employm
 1,1234567890,Checking,5000.00,John Doe,1980-06-01,Employed,2023-01-01,1.00,101,500.00,USD,2023-07-30,2500.00,2000.00,Retirement,1000000.00,Medium
 2,2345678901,Savings,7000.00,Jane Doe,1985-12-12,Self-employed,2023-02-01,2.00,102,1000.00,USD,2023-07-25,3000.00,1500.00,Buy a House,300000.00,Low
 ```
+
+After the dataset uploaded to the database, you can connect to your postgresql instance with `psql`, then run query to check the data. For example:
+
+1. Copy the psql connection string to your terminal and connect to the db.
+    ![](./media/conn_str.png)
+
+    ```shell
+    psql -h c-db-ozguler.XXXXX.postgres.cosmos.azure.com -d citus -U citus -p 5432
+    ```
+1. Run query to check the data.
+
+    ```shell
+    citus=> SELECT * FROM bank_accounts;
+    ```
+
+    ![](./media/check_data.png)
+
+## Connection setup in prompt flow
+
+Create a PromptFlow custom connection to connect to cosmosdb PostgreSQL database.
