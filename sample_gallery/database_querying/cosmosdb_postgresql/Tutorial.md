@@ -65,8 +65,50 @@ After the dataset uploaded to the database, you can connect to your postgresql i
     citus=> SELECT * FROM bank_accounts;
     ```
 
-    ![](./media/check_data.png)
+    ![img](./media/query_sample.png)
 
 ## Connection setup in prompt flow
 
-Create a PromptFlow custom connection to connect to cosmosdb PostgreSQL database.
+Create a prompt flow **custom connection** to connect to cosmosdb PostgreSQL database.
+
+The custom connection creation in prompt flow is based on the yaml file specification on the `key:value` of your authentication information to call the database. You can refer to the [prompt flow connection](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
+
+In this tutorial, we provide the template [conn.yaml](./source_file/conn.yaml), which have the following format keys for consuming the CosmosDB PostgreSQL database:
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+name: cosmos
+type: custom
+configs:
+  endpoint: "<your-endpoint>"
+  database: "citus"
+  username: "citus"
+  port: "<your-port>"
+secrets:
+  password: "<user-input>"
+
+```
+
+The value of these keys you can find in the connection string of your cosmosdb instance. For example:
+![img](./media/conn_str_sample.png)
+
+- endpoint: behind of the `host=` (e.g. `c-db-ozguler.XXXXX.postgres.cosmos.azure.com`).
+- port: behind of the `port=`.
+- database: behind of the `dbname=`.
+- username: behind of the `user=`.
+- password: behind of the `password=`.
+
+You can run the following command to create the connection:
+
+```shell
+cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
+pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> configs.port=<your-port> secrets.password=<your-password>
+```
+
+## Local environment setup
+
+For the SQL API for cosmos the environment will require `azure-cosmos` pip installed so that you can use the cosmos db custom prompt flow connection within your python code.
+
+However since we are using the postgresql citus API we will need to install the required **ODBC drivers** to your local machine environment.
+
+In this tutorial, we provide a [Docker file](./source_file/image_build/Dockerfile) to do that in the Linux os.
