@@ -73,6 +73,8 @@ Create a prompt flow **custom connection** to connect to cosmosdb PostgreSQL dat
 
 The custom connection creation in prompt flow is based on the yaml file specification on the `key:value` of your authentication information to call the database. You can refer to the [prompt flow connection](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
 
+For the SQL API for cosmos the environment will require azure-cosmos pip installed so that you can use the cosmos db custom promptflow connection within your python code.
+
 In this tutorial, we provide the template [conn.yaml](./source_file/conn.yaml), which have the following format keys for consuming the CosmosDB PostgreSQL database:
 
 ```yaml
@@ -86,7 +88,6 @@ configs:
   port: "<your-port>"
 secrets:
   password: "<user-input>"
-
 ```
 
 The value of these keys you can find in the connection string of your cosmosdb instance. For example:
@@ -218,4 +219,52 @@ risk tolerance. - Continuously increase your retirement savings contributions
 as your income allows. - Explore additional retirement savings vehicles, such 
 as annuities or real estate investments, to diversify your retirement income sources. 8. Investment Opportunities based on Medium Risk Tolerance: - Given your medium risk tolerance, a balanced investment approach is recommended. This may include a combination of stocks, bonds, and other asset classes to achieve a diversified portfolio. - Investment options to explore include low-cost index funds, mutual funds, or exchange-traded funds (ETFs) that offer exposure to broad market indices. - Avoid high-risk investments, such as individual stocks or speculative ventures, that may not align with your risk tolerance. Please note that this plan serves as a general guideline and should be customized to your specific financial situation. It is advisable to consult with a financial advisor who can provide personalized recommendations tailored to your needs. I hope this comprehensive financial plan provides you with a solid foundation for achieving your financial goals and supports your loan application. Should you have any further questions or require additional assistance, please feel free to reach out. Best regards, [Your Name] [Your Title] [Contact Information]"
 }
-``````
+```
+
+## Transfer the flow to Azure AI
+
+For enterprise, who is building the LLM app for production with high quality and robustness, you can transfer the flow to Azure AI to get the following benefits:
+* Private data access and controls
+* Collaborative development
+* Automating iterative experimentation and CI/CD
+* Deployment and optimization
+* Safe and Responsible AI
+
+More details about the benefits you can refer to [Prompt flow cloud](https://microsoft.github.io/promptflow/cloud/index.html).
+
+With the flow now created and tested locally, you can easily upload the flow to Azure AI by conducting the "import" operation in portal. You can refer to the [import flow](https://microsoft.github.io/promptflow/cloud/import.html) for more details.
+
+In adddtion to the local SDK, we also provide the cloud SDK for you to manage the flow by using the python code or command line.
+
+Also, you can use the following command to upload the flow to cloud studio:
+
+```shell
+cd ./sample_gallery/database_querying       
+pfazure flow create --flow ./personal_finance_recommender --subscription <your-subscription-id> --resource-group <your-resource-group> --workspace-name <your-workspace-name>
+```
+
+You can refer to the [pfazure](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html#pfazure) for more details.
+
+### Runtime and connection setup in Azure AI
+
+**Create a custom environment**
+
+Create a new AzureML “custom environment” based on existing default promptflow runtime. 
+
+However since we are using the postgresql citus API we will need to install the required odbc drivers to the image. In this tutorial, we have provide a [Dockerfile](./source_file/image_build/Dockerfile) to do that on cloud. 
+
+And also the [environment.yaml](./source_file/environment.yaml) file to create the custom environment by using the Azure CLI.
+
+**Create a runtime**
+
+In AzureML prompt flow context, a container runtime is called an “Environment”. The compute that will run the new “Environment” is called a runtime. When your new “Environment” that includes cosmos-db is built correctly you will need to build a new “runtime” (the compute) that will run the new environment.
+
+Create a new compute and put your environment on it. This becomes your prompt flow runtime.
+
+**Create a custom connection**
+
+Create a new custom connection in AzureML prompt flow protal with the same key:value pairs as your local custom connection. 
+
+💡**Tips**:
+
+More details on the setup you can refer to this [blog](https://cloudatlas.me/personalized-financial-advise-using-azureml-promptflow-azureopenai-banking-customer-data-on-86ad1176b097) that is introducing how to build the flow on Azure AI.
