@@ -146,4 +146,76 @@ However since we are using the postgresql citus API we will need to install the 
 
 In this tutorial, we also provide a [Docker file](./source_file/image_build/Dockerfile) to do that.
 
+## Develop a flow to generate financial advise based on customer data query from cosmosdb PostgreSQL
 
+In this tutorial, we've prepared such a sample flow to generate financial advise based on specfic customer's asked question and his data queried from the CosmosDB PostgreSQL. You can access the structure difiniton file of the flow in [flow.dag.yaml](./flow/flow.dag.yaml) in the [personal_finance_recommender](./personal_finance_recommender/) folder.
+
+By utilizing the Prompt Flow VS Code extension, you can view this flow in a visual editor, should look like this:
+
+![flow authoring](./media/flow.png)
+
+The flow has 2 input parameters:
+* `account_number`: the identity of the customer storing in the database.
+* `request`: the question asked by the customer.
+
+The flow has 3 nodes:
+* `query_cosmos`: the python node to connect to the cosmosdb PostgreSQL database and query the customer data selecting by the account_number.
+* `prompt_content`: the python node to combine the queried customer data and the sepecific question of each field to be the prompt for the LLM to generate the financial advice.
+* `advice_generator`: the LLM node to generate the financial advice based on the prompt.
+
+## Run the flow to have a test
+
+With the promptflow package installed, you can perform a single test on the flow by running the following command:
+
+```shell
+cd ./sample_gallery/database_querying
+pf flow test --flow ./personal_finance_recommender --inputs account_number="1234567890" request="What is the best way to save money?"
+```
+Alternatively, you can also run the flow through the Visual Studio Code extension.
+
+1. Open the [flow.dag.yaml](./sk_planner_flow/flow.dag.yaml) and switch to the visual editor.
+1. Check the **Inputs** section, then click the **Run** button to run the flow.
+
+![flow_yaml_run](./media/flow_run.png)
+
+A sample generation result should look like this:
+
+```shell
+"output":"Subject: Comprehensive Financial Plan for John Doe's Loan Application Dear John Doe, Thank you for reaching out for assistance with your financial goals and loan application. Based on the detailed financial profile you provided, I have prepared a comprehensive financial plan that aligns with your long-term goals, 
+risk tolerance, and current financial standing. Please find the plan outlined 
+below. 1. Personalized Advice for Different Age Groups or Life Situations: 
+- Considering your current goal of retirement, it is essential to start saving 
+and investing early to take advantage of compounding returns. However, 
+regardless of age, the principles of diversification and risk management remain
+ crucial. I will factor in your age to determine an appropriate asset allocation
+ strategy. 2. Account Type - Checking Account: - While a checking account
+ provides liquidity and flexibility for day-to-day transactions, it may not 
+align with your long-term financial objectives. I recommend opening additional 
+accounts, such as a savings account or investment account, to allocate funds 
+for specific purposes and potential growth. 3. Strategies for Maximizing the 
+Value of Current Balance: - With a current balance of $5000, it is advisable 
+to allocate a portion of this balance towards emergency funds as a safety net.
+ I recommend setting aside 3-6 months' worth of living expenses in a high-yield
+ savings account. This ensures you have access to funds in case of unexpected 
+expenses or job loss. 4. Employment Status - Employed: - Your employment status
+ provides a stable income source, allowing you to allocate a portion of your 
+monthly earnings towards savings and investments. I will incorporate your 
+mployment status into the financial plan to determine an appropriate savings 
+rate and investment strategy. 5. Allocation of Average Monthly Deposit - $2500:
+ - As a general guideline, I recommend allocating a certain percentage of your 
+monthly deposit towards investments, savings, and emergency funds. Considering your medium risk tolerance, I suggest allocating 70% ($1750) towards investments, 20% ($500) towards savings, and 10% ($250) towards emergency funds. 6. Methods to Minimize Unnecessary Withdrawals: - To minimize unnecessary withdrawals, it is crucial to create a budget and stick to it. 
+By tracking your expenses and prioritizing needs over wants, you can reduce the likelihood of making unnecessary withdrawals. 
+Additionally, establishing an emergency fund will help cover unexpected expenses without tapping into your investment portfolio. 
+7. Steps for Achieving Financial Goal - Retirement: - Short-term steps: - 
+Review your current retirement savings and assess if they are on track to meet 
+your desired retirement income. - Maximize contributions to tax-advantaged 
+retirement accounts, such as a 401(k) or IRA, to take advantage of potential 
+employer matches and tax benefits. - Consider working with a financial advisor 
+to develop a retirement savings plan tailored to your specific goals and risk 
+tolerance. - Long-term steps: - Regularly review and adjust your investment 
+portfolio to ensure it aligns with your changing financial circumstances and 
+risk tolerance. - Continuously increase your retirement savings contributions 
+as your income allows. - Explore additional retirement savings vehicles, such 
+as annuities or real estate investments, to diversify your retirement income sources. 8. Investment Opportunities based on Medium Risk Tolerance: - Given your medium risk tolerance, a balanced investment approach is recommended. This may include a combination of stocks, bonds, and other asset classes to achieve a diversified portfolio. - Investment options to explore include low-cost index funds, mutual funds, or exchange-traded funds (ETFs) that offer exposure to broad market indices. - Avoid high-risk investments, such as individual stocks or speculative ventures, that may not align with your risk tolerance. Please note that this plan serves as a general guideline and should be customized to your specific financial situation. It is advisable to consult with a financial advisor who can provide personalized recommendations tailored to your needs. I hope this comprehensive financial plan provides you with a solid foundation for achieving your financial goals and supports your loan application. Should you have any further questions or require additional assistance, please feel free to reach out. Best regards, [Your Name] [Your Title] [Contact Information]"
+}
+``````

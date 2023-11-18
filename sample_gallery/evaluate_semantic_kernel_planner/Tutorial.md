@@ -42,7 +42,7 @@ In this tutorial, we've prepared a sample flow to help you get started. You can 
     - The flow incorporates a semantic kernel planner node (Python). The entry point for the planner is the [sk_planner.py](./sk_planner_flow/sk_planner.py) file.
 - [skills](./sk_planner_flow/skills/): This folder contains the Semantic Kernel custom plugin files.
 
-y utilizing the Prompt Flow VS Code extension, you can view this flow in a visual editor:
+By utilizing the Prompt Flow VS Code extension, you can view this flow in a visual editor:
 
 1. Open this repository in VS Code.
 1. Activate the conda environment where the `promptflow` package is installed.
