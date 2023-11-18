@@ -109,6 +109,41 @@ pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> confi
 
 For the SQL API for cosmos the environment will require `azure-cosmos` pip installed so that you can use the cosmos db custom prompt flow connection within your python code.
 
-However since we are using the postgresql citus API we will need to install the required **ODBC drivers** to your local machine environment.
+However since we are using the postgresql citus API we will need to install the required **ODBC drivers** and other required packages to your local machine environment. For Linux, you can set up the environment with the following steps:
 
-In this tutorial, we provide a [Docker file](./source_file/image_build/Dockerfile) to do that in the Linux os.
+1. Install system packages required for **pyodbc**
+
+    ```shell
+    apt-get update \
+    && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    unixodbc-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+    ```
+
+1. Install **PostgreSQL ODBC Driver**
+      
+    ```shell
+    apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    && curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && apt-get update \
+    && apt-get install -y odbc-postgresql \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+    ```
+
+1. Install required packages defined in [requirements.txt](./source_file/image_build/requirements.txt)
+
+    ```shell
+    cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file/image_build
+    pip install -r requirements.txt
+    ```
+
+In this tutorial, we also provide a [Docker file](./source_file/image_build/Dockerfile) to do that.
+
+
