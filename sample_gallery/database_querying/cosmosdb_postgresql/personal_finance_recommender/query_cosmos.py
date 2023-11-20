@@ -1,5 +1,5 @@
 import os  # Import the os library for environment variables
-#import pyodbc  # Import the ODBC library
+import pyodbc  # Import the ODBC library
 from promptflow import tool
 from promptflow.connections import CustomConnection
 from urllib.parse import urlparse
@@ -19,6 +19,7 @@ def my_python_tool(account_number: str, connection: CustomConnection) -> str:
     password = connection.password
 
     # Initialize the ODBC connection string
+    # The driver below is for Linux. For Windows, use the following driver: DRIVER={SQL Server};
     conn_str = "DRIVER=/usr/lib/x86_64-linux-gnu/odbc/psqlodbcw.so;" + "SERVER=" + host + ";PORT=" + port + ";DATABASE=" + database + ";UID=" + user + ";PWD=" + password + ";sslmode=require;"
 
     # Initialize the ODBC connection

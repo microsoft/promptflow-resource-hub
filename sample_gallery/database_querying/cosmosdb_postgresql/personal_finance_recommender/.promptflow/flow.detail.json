@@ -1,0 +1,175 @@
+{
+  "flow_runs": [
+    {
+      "run_id": "bc525fe0-8363-4ad1-af37-97aac9309f1a_0",
+      "status": "Failed",
+      "error": {
+        "message": "Execution failure in 'query_cosmos': (InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+        "messageFormat": "Execution failure in '{node_name}': {error_type_and_message}",
+        "messageParameters": {
+          "node_name": "query_cosmos",
+          "error_type_and_message": "(InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')"
+        },
+        "referenceCode": "Tool/__pf_main__",
+        "code": "UserError",
+        "innerError": {
+          "code": "ToolExecutionError",
+          "innerError": null
+        },
+        "additionalInfo": [
+          {
+            "type": "ToolExecutionErrorDetails",
+            "info": {
+              "type": "InterfaceError",
+              "message": "('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+              "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\chenlujiao\\Documents\\GitHub\\promptflow-samples-ozguler\\sample_gallery\\database_querying\\cosmosdb_postgresql\\personal_finance_recommender\\query_cosmos.py\", line 25, in my_python_tool\n    conn = pyodbc.connect(conn_str)\npyodbc.InterfaceError: ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')\n",
+              "filename": "C:\\Users\\chenlujiao\\Documents\\GitHub\\promptflow-samples-ozguler\\sample_gallery\\database_querying\\cosmosdb_postgresql\\personal_finance_recommender\\query_cosmos.py",
+              "lineno": 25,
+              "name": "my_python_tool"
+            }
+          }
+        ],
+        "debugInfo": {
+          "type": "ToolExecutionError",
+          "message": "Execution failure in 'query_cosmos': (InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+          "stackTrace": "\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 883, in _exec\n    output, nodes_outputs = self._traverse_nodes(inputs, context)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 965, in _traverse_nodes\n    nodes_outputs, bypassed_nodes = self._submit_to_scheduler(context, inputs, batch_nodes)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 985, in _submit_to_scheduler\n    return FlowNodesScheduler(self._tools_manager, inputs, nodes, self._node_concurrency, context).execute()\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 67, in execute\n    raise e\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 56, in execute\n    self._dag_manager.complete_nodes(self._collect_outputs(completed_futures))\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 85, in _collect_outputs\n    each_node_result = each_future.result()\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\concurrent\\futures\\_base.py\", line 439, in result\n    return self.__get_result()\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\concurrent\\futures\\_base.py\", line 391, in __get_result\n    raise self._exception\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\concurrent\\futures\\thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 114, in _exec_single_node_in_thread\n    result = f(**kwargs)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\tool.py\", line 69, in new_f\n    return tool_invoker.invoke_tool(func, *args, **kwargs)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\executor\\_tool_invoker.py\", line 19, in invoke_tool\n    return cur_flow.invoke_tool_with_cache(f, argnames, args, kwargs)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 126, in invoke_tool_with_cache\n    result = self.invoke_tool(f, args, kwargs)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 175, in invoke_tool\n    raise ToolExecutionError(node_name=node_name, module=f.__module__) from e\n",
+          "innerException": {
+            "type": "InterfaceError",
+            "message": "('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+            "stackTrace": "Traceback (most recent call last):\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 164, in invoke_tool\n    return f(*args, **kwargs)\n  File \"C:\\Users\\chenlujiao\\Documents\\GitHub\\promptflow-samples-ozguler\\sample_gallery\\database_querying\\cosmosdb_postgresql\\personal_finance_recommender\\query_cosmos.py\", line 25, in my_python_tool\n    conn = pyodbc.connect(conn_str)\n",
+            "innerException": null
+          }
+        }
+      },
+      "inputs": {
+        "account_number": "1234567890",
+        "request": "\"I want to make a loan application\""
+      },
+      "output": null,
+      "metrics": null,
+      "request": null,
+      "parent_run_id": "bc525fe0-8363-4ad1-af37-97aac9309f1a",
+      "root_run_id": "bc525fe0-8363-4ad1-af37-97aac9309f1a",
+      "source_run_id": null,
+      "flow_id": "template_standard_flow",
+      "start_time": "2023-11-20T05:57:09.591242Z",
+      "end_time": "2023-11-20T05:57:09.723749Z",
+      "index": 0,
+      "api_calls": [
+        {
+          "name": "my_python_tool",
+          "type": "Tool",
+          "inputs": {
+            "account_number": "1234567890",
+            "connection": "cosmos"
+          },
+          "output": null,
+          "start_time": 1700431029.596243,
+          "end_time": 1700431029.713748,
+          "error": {
+            "message": "Execution failure in 'query_cosmos': (InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+            "type": "ToolExecutionError"
+          },
+          "children": null,
+          "node_name": "query_cosmos"
+        }
+      ],
+      "variant_id": "",
+      "name": "",
+      "description": "",
+      "tags": null,
+      "system_metrics": {
+        "duration": 0.132507,
+        "total_tokens": 0
+      },
+      "result": null,
+      "upload_metrics": false
+    }
+  ],
+  "node_runs": [
+    {
+      "node": "query_cosmos",
+      "flow_run_id": "bc525fe0-8363-4ad1-af37-97aac9309f1a",
+      "run_id": "bc525fe0-8363-4ad1-af37-97aac9309f1a_query_cosmos_0",
+      "status": "Failed",
+      "inputs": {
+        "account_number": "1234567890",
+        "connection": "cosmos"
+      },
+      "output": null,
+      "metrics": null,
+      "error": {
+        "message": "Execution failure in 'query_cosmos': (InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+        "messageFormat": "Execution failure in '{node_name}': {error_type_and_message}",
+        "messageParameters": {
+          "node_name": "query_cosmos",
+          "error_type_and_message": "(InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')"
+        },
+        "referenceCode": "Tool/__pf_main__",
+        "code": "UserError",
+        "innerError": {
+          "code": "ToolExecutionError",
+          "innerError": null
+        },
+        "additionalInfo": [
+          {
+            "type": "ToolExecutionErrorDetails",
+            "info": {
+              "type": "InterfaceError",
+              "message": "('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+              "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\chenlujiao\\Documents\\GitHub\\promptflow-samples-ozguler\\sample_gallery\\database_querying\\cosmosdb_postgresql\\personal_finance_recommender\\query_cosmos.py\", line 25, in my_python_tool\n    conn = pyodbc.connect(conn_str)\npyodbc.InterfaceError: ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')\n",
+              "filename": "C:\\Users\\chenlujiao\\Documents\\GitHub\\promptflow-samples-ozguler\\sample_gallery\\database_querying\\cosmosdb_postgresql\\personal_finance_recommender\\query_cosmos.py",
+              "lineno": 25,
+              "name": "my_python_tool"
+            }
+          }
+        ],
+        "debugInfo": {
+          "type": "ToolExecutionError",
+          "message": "Execution failure in 'query_cosmos': (InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+          "stackTrace": "\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 126, in invoke_tool_with_cache\n    result = self.invoke_tool(f, args, kwargs)\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 175, in invoke_tool\n    raise ToolExecutionError(node_name=node_name, module=f.__module__) from e\n",
+          "innerException": {
+            "type": "InterfaceError",
+            "message": "('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+            "stackTrace": "Traceback (most recent call last):\n  File \"C:\\Users\\chenlujiao\\AppData\\Local\\anaconda3\\envs\\pfsdk\\lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 164, in invoke_tool\n    return f(*args, **kwargs)\n  File \"C:\\Users\\chenlujiao\\Documents\\GitHub\\promptflow-samples-ozguler\\sample_gallery\\database_querying\\cosmosdb_postgresql\\personal_finance_recommender\\query_cosmos.py\", line 25, in my_python_tool\n    conn = pyodbc.connect(conn_str)\n",
+            "innerException": null
+          }
+        }
+      },
+      "parent_run_id": "bc525fe0-8363-4ad1-af37-97aac9309f1a_0",
+      "start_time": "2023-11-20T05:57:09.596243Z",
+      "end_time": "2023-11-20T05:57:09.715759Z",
+      "index": 0,
+      "api_calls": [
+        {
+          "name": "my_python_tool",
+          "type": "Tool",
+          "inputs": {
+            "account_number": "1234567890",
+            "connection": "cosmos"
+          },
+          "output": null,
+          "start_time": 1700431029.596243,
+          "end_time": 1700431029.713748,
+          "error": {
+            "message": "Execution failure in 'query_cosmos': (InterfaceError) ('IM002', '[IM002] [Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified (0) (SQLDriverConnect)')",
+            "type": "ToolExecutionError"
+          },
+          "children": null,
+          "node_name": "query_cosmos"
+        }
+      ],
+      "variant_id": "",
+      "cached_run_id": null,
+      "cached_flow_run_id": null,
+      "logs": {
+        "stdout": "",
+        "stderr": ""
+      },
+      "system_metrics": {
+        "duration": 0.119516
+      },
+      "result": null
+    }
+  ]
+}

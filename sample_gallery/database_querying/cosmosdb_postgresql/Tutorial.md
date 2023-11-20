@@ -1,8 +1,8 @@
 # Personalized Financial advise using banking customer data on PostgreSQL/CosmosDB
 
-Customer data stored in operational databases will be useful to enrich context for LLM generations. In this post we will generate personalized financial advise to banking customers using their data stored in a database. We will use PromptFlow for LLM app development and postgresql / cosmosdb for storing customer data.
+Customer data stored in operational databases will be useful to enrich context for LLM generations. In this post we will generate personalized financial advise to banking customers using their data stored in a database. We will use PromptFlow for LLM app development and postgresql/cosmosdb for storing customer data.
 
-Prompt flow, a new service within Azure ML suite of services, tries to address challenges with LLM App development. Main benefit is that prompt flow brings together LLM’s, 3rd party API’s, OS models, tools for prompt engineering and to evaluate prompt/model variants.
+Prompt flow, a new service within Azure ML suite of services, addresses challenges associated with LLM App development. Main benefit is that prompt flow brings together LLM’s, 3rd party API’s, OS models, tools for prompt engineering and to evaluate prompt/model variants.
 
 * [Open-sourced prompt flow](https://github.com/microsoft/promptflow)
 * [Prompt flow cloud - Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/overview-what-is-prompt-flow?view=azureml-api-2)
@@ -11,22 +11,24 @@ In this tutorial we will use prompt flow open-sourced version, which is the pure
 
 ## PostgreSQL/CosmosDB setup
 
-[Azure Cosmos DB for PostgreSQL](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/) is a managed service for PostgreSQL extended with the [Citus open source](https://github.com/citusdata/citus) superpower of distributed *tables*.
+[Azure Cosmos DB for PostgreSQL](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/) is a managed PostgreSQL service, extended with the [Citus open source](https://github.com/citusdata/citus) *distributed tables* feature. Follow these steps to create a PostgreSQL database on Azure:
 
-To create a PostgreSQL database on Azure, you can:
-1. Go to Azure portal, select `Create` to create the Azure resource in your subscription. Then s
+1. Go to Azure portal, select `Create` to create the Azure resource in your subscription.
 1. Select the `Azure Cosmos DB` resource type, select `PostgreSQL`.
-1. Then you can follow the [Create an Azure Cosmos DB for PostgreSQL cluster in the Azure portal](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/quickstart-create-portal?tabs=direct) tutorial to complete the resource configuration as your needs.
+1. Follow the [Create an Azure Cosmos DB for PostgreSQL cluster in the Azure portal](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/quickstart-create-portal?tabs=direct) tutorial to complete the resource configuration as per your needs.
 
 ![Create an Azure Cosmos DB account](./media/Create%20an%20Azure%20Cosmos%20DB%20account.png)
 
 ## Database setup
 
-In our imaginary scenario we will integrate customer data stored in Cosmosdb / PostgreSQL with GPT models to generate financial advise for a customer intended task e.g. loan application, debt repayment.
+In our imaginary scenario, we will integrate customer data stored in CosmosDB/PostgreSQL with GPT models to generate financial advice for a customer intended task e.g. loan application, debt repayment.
 
-After creating a cosmosdb instance on Azure we will create a customer banking db under postgresql / cosmosdb and upload banking data to it. GPT4 proves to be very useful in generating synthetic data, more on how to generate dataset using LLM you can refer to [Golden dataset](../../golden_dataset/copilot-golden-dataset-creation-guidance.md).
+After creating a CosmosDB instance on Azure, we will create a customer banking database under PostgreSQL/CosmosDB and upload banking data to it. To generate synthetic data for a banking customer database, I used LLM.
 
-I simply used ChatGPT to create synthetic data for a banking customer database which will include data that can be used for financial advise such as “average_monthly_deposit”, “average_monthly_withdrawal”, “risk_tolerance”, “financial_goal” etc. I then copy ChatGPT generated synthetic data to a [data.csv](./source_file/data.csv) file and uploaded it to Cosmosdb/PostgreSQL database running on AzureI created earlier with a simple **df.to_sql** statement.
+> 💡 Tips:
+> More on how to generate dataset using LLM you can refer to [Golden dataset](../../golden_dataset/copilot-golden-dataset-creation-guidance.md).
+
+The database will include data used for financial advice such as “average_monthly_deposit”, “average_monthly_withdrawal”, “risk_tolerance”, “financial_goal” etc. This data is then copied to a [data.csv](./source_file/data.csv) file and uploaded to the CosmosDB/PostgreSQL database on Azure using a simple **df.to_sql** statement.
 
 You can run code cells in the [cosmosdb_setup.ipynb](./source_file/cosmosdb_setup.ipynb) notebook to complete database setup:
 
@@ -69,13 +71,9 @@ After the dataset uploaded to the database, you can connect to your postgresql i
 
 ## Connection setup in prompt flow
 
-Create a prompt flow **custom connection** to connect to cosmosdb PostgreSQL database.
+In prompt flow, you can create a **custom connection** to connect to the CosmosDB PostgreSQL database. Creating a custom connection in prompt flow is based on specifying your authentication details as `key:value` pairs in a *YAML file*. For more information, refer to the [prompt flow connection guide](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
 
-The custom connection creation in prompt flow is based on the yaml file specification on the `key:value` of your authentication information to call the database. You can refer to the [prompt flow connection](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
-
-For the SQL API for cosmos the environment will require azure-cosmos pip installed so that you can use the cosmos db custom promptflow connection within your python code.
-
-In this tutorial, we provide the template [conn.yaml](./source_file/conn.yaml), which have the following format keys for consuming the CosmosDB PostgreSQL database:
+In this tutorial, we provide a [conn.yaml](./source_file/conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
@@ -90,7 +88,7 @@ secrets:
   password: "<user-input>"
 ```
 
-The value of these keys you can find in the connection string of your cosmosdb instance. For example:
+You can find the values for these keys in your CosmosDB instance's connection string:
 ![img](./media/conn_str_sample.png)
 
 - endpoint: behind of the `host=` (e.g. `c-db-ozguler.XXXXX.postgres.cosmos.azure.com`).
@@ -99,7 +97,7 @@ The value of these keys you can find in the connection string of your cosmosdb i
 - username: behind of the `user=`.
 - password: behind of the `password=`.
 
-You can run the following command to create the connection:
+To create the connection, execute the following command:
 
 ```shell
 cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
@@ -108,9 +106,9 @@ pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> confi
 
 ## Local environment setup
 
-For the SQL API for cosmos the environment will require `azure-cosmos` pip installed so that you can use the cosmos db custom prompt flow connection within your python code.
+For using the Cosmos SQL API, ensure that the `azure-cosmos` package is installed in your environment. This enables you to utilize the Cosmos DB custom connection in your Python code.
 
-However since we are using the postgresql citus API we will need to install the required **ODBC drivers** and other required packages to your local machine environment. For Linux, you can set up the environment with the following steps:
+However since in this tutorial, we are using the **PostgreSQL Citus API**, so we will need to install the required **ODBC drivers** and other necessary packages to your local machine environment. For Linux, you can follow these steps:
 
 1. Install system packages required for **pyodbc**
 
@@ -144,34 +142,60 @@ However since we are using the postgresql citus API we will need to install the 
     cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file/image_build
     pip install -r requirements.txt
     ```
+> 💡 Tips:
+> In this tutorial, we also provide a [**Docker file**](./source_file/image_build/Dockerfile) to simplify the setup process by docker.
 
-In this tutorial, we also provide a [Docker file](./source_file/image_build/Dockerfile) to do that.
+## Develop a flow to generate financial advise based on a PostgreSQL/CosmosDB query
 
-## Develop a flow to generate financial advise based on customer data query from cosmosdb PostgreSQL
+In this tutorial, we've prepared a sample flow to generate financial advice. This flow is based on a specific customer's query and their data, which is pulled from the CosmosDB PostgreSQL. You can access the structure definition file of the flow in [flow.dag.yaml](./flow/flow.dag.yaml) located in the [personal_finance_recommender](./personal_finance_recommender/) folder.
 
-In this tutorial, we've prepared such a sample flow to generate financial advise based on specfic customer's asked question and his data queried from the CosmosDB PostgreSQL. You can access the structure difiniton file of the flow in [flow.dag.yaml](./flow/flow.dag.yaml) in the [personal_finance_recommender](./personal_finance_recommender/) folder.
-
-By utilizing the Prompt Flow VS Code extension, you can view this flow in a visual editor, should look like this:
+By using the Prompt Flow VS Code extension, you can visually inspect this flow. The flow should look like this:
 
 ![flow authoring](./media/flow.png)
 
-The flow has 2 input parameters:
-* `account_number`: the identity of the customer storing in the database.
-* `request`: the question asked by the customer.
+The flow has two input parameters:
 
-The flow has 3 nodes:
-* `query_cosmos`: the python node to connect to the cosmosdb PostgreSQL database and query the customer data selecting by the account_number.
-* `prompt_content`: the python node to combine the queried customer data and the sepecific question of each field to be the prompt for the LLM to generate the financial advice.
-* `advice_generator`: the LLM node to generate the financial advice based on the prompt.
+* `account_number`: This identifies the customer in the database.
+* `request`: This is the question asked by the customer.
 
-## Run the flow to have a test
+The flow contains three nodes:
 
-With the promptflow package installed, you can perform a single test on the flow by running the following command:
+* `query_cosmos`: This Python node connects to the CosmosDB PostgreSQL database and queries the customer data using the account number.
+    
+    The `pyodbc` package is used to connect to the database and query the data. The connection string is initialized using the keys retrieved from the custom connection. For example:
+    ```python
+    import pyodbc  # Import the ODBC library
+    from promptflow import tool
+    from promptflow.connections import CustomConnection
+
+    @tool
+    def my_python_tool(account_number: str, connection: CustomConnection) -> str:
+
+        host = connection.endpoint
+        port = connection.port
+        database = connection.database
+        user = connection.username
+        password = connection.password
+
+        # Initialize the ODBC connection string
+        # The driver below is for Linux. For Windows, use the following driver: DRIVER={SQL Server};
+        conn_str = "DRIVER=/usr/lib/x86_64-linux-gnu/odbc/psqlodbcw.so;" + "SERVER=" + host + ";PORT=" + port + ";DATABASE=" + database + ";UID=" + user + ";PWD=" + password + ";sslmode=require;"
+    
+        # Initialize the ODBC connection
+        conn = pyodbc.connect(conn_str)
+    ```
+* `prompt_content`: This Python node combines the queried customer data and the specific question for each field to create the prompt for the LLM to generate the financial advice.
+* `advice_generator`: This LLM node generates the financial advice based on the prompt.
+
+## Testing the Flow
+
+Once you've installed the `promptflow` package, you can perform a single test on the flow by running the following command:
 
 ```shell
 cd ./sample_gallery/database_querying
 pf flow test --flow ./personal_finance_recommender --inputs account_number="1234567890" request="What is the best way to save money?"
 ```
+
 Alternatively, you can also run the flow through the Visual Studio Code extension.
 
 1. Open the [flow.dag.yaml](./sk_planner_flow/flow.dag.yaml) and switch to the visual editor.
@@ -223,47 +247,71 @@ as annuities or real estate investments, to diversify your retirement income sou
 
 ## Transfer the flow to Azure AI
 
-For enterprise, who is building the LLM app for production with high quality and robustness, you can transfer the flow to Azure AI to get the following benefits:
+For enterprises aiming to build a robust, high-quality Language Model (LLM) app, transferring the flow to Azure AI offers several benefits:
+
 * Private data access and controls
 * Collaborative development
 * Automating iterative experimentation and CI/CD
 * Deployment and optimization
 * Safe and Responsible AI
 
-More details about the benefits you can refer to [Prompt flow cloud](https://microsoft.github.io/promptflow/cloud/index.html).
+More details about the benefits can be found in the [Prompt flow cloud documentation](https://microsoft.github.io/promptflow/cloud/index.html).
 
-With the flow now created and tested locally, you can easily upload the flow to Azure AI by conducting the "import" operation in portal. You can refer to the [import flow](https://microsoft.github.io/promptflow/cloud/import.html) for more details.
+### Runtime and connection set up in Azure AI
 
-In adddtion to the local SDK, we also provide the cloud SDK for you to manage the flow by using the python code or command line.
+**Create a custom environment**
 
-Also, you can use the following command to upload the flow to cloud studio:
+You can create a new AzureML "custom environment" based on the existing default prompt flow runtime.
+
+However, since we are using the PostgreSQL Citus API, we need to install the required ODBC drivers to the image. In this tutorial, we provide a [Dockerfile](./source_file/image_build/Dockerfile) and an [environment.yaml](./source_file/environment.yaml) file to create the custom environment using Azure CLI.
+
+Run CLI command to create an environment:
+
+```shell
+cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file/image_build
+az login(optional)
+az ml environment create -f environment.yaml --subscription <sub-id> -g <resource-group> -w <workspace>
+```
+
+More details about how to create a custom environment you can refer to this [documentation](https://learn.microsoft.com/en-us/azure/machine-learning/prompt-flow/how-to-customize-environment-runtime?view=azureml-api-2)
+
+**Create a runtime**
+
+In AzureML prompt flow context, a container runtime  is referred to as an “Environment”. The compute that will run the new “Environment” is called a runtime. When your new “Environment” that includes cosmos-db is built correctly you will need to build a new “runtime” (the compute) that will run the new environment.
+
+Create a new compute instance in your workspace, and create a new prompt flow runtime on top of this compute instance and the custom environment you created. This becomes your prompt flow runtime.
+
+![img](./media/ui_ci.png)
+
+**Create a custom connection**
+
+Create a new custom connection in AzureML prompt flow portal with the same key:value pairs as your local custom connection.
+
+![img](./media/ui_custom_conn.png)
+
+## Upload the flow to Azure AI and run it
+
+After creating and testing the flow locally, you can easily upload the flow to Azure AI using the "import" operation in the portal. Consult the [import flow documentation](https://microsoft.github.io/promptflow/cloud/import.html) for more details.
+
+In addition to the local SDK, we also provide a cloud SDK for you to manage the flow using Python code or command line. For example, you can use the following command to upload the flow to the Cloud Studio:
 
 ```shell
 cd ./sample_gallery/database_querying       
 pfazure flow create --flow ./personal_finance_recommender --subscription <your-subscription-id> --resource-group <your-resource-group> --workspace-name <your-workspace-name>
 ```
 
-You can refer to the [pfazure](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html#pfazure) for more details.
+You can refer to the [pfazure documentation](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html#pfazure) for more details.
 
-### Runtime and connection setup in Azure AI
+Once the runtime and connection are set up in Azure AI, you can open the flow you uploaded in the cloud. The flow should look like this:
+![img](./media/flow_ui.png)
 
-**Create a custom environment**
+Then you can select the runtime you have created in the previous step:
+![img](./media/ui_runtime.png)
 
-Create a new AzureML “custom environment” based on existing default promptflow runtime. 
+And select the connection you have created in the previous step on the LLM nodes:
+![img](./media/ui_flow_conn.png)
 
-However since we are using the postgresql citus API we will need to install the required odbc drivers to the image. In this tutorial, we have provide a [Dockerfile](./source_file/image_build/Dockerfile) to do that on cloud. 
-
-And also the [environment.yaml](./source_file/environment.yaml) file to create the custom environment by using the Azure CLI.
-
-**Create a runtime**
-
-In AzureML prompt flow context, a container runtime is called an “Environment”. The compute that will run the new “Environment” is called a runtime. When your new “Environment” that includes cosmos-db is built correctly you will need to build a new “runtime” (the compute) that will run the new environment.
-
-Create a new compute and put your environment on it. This becomes your prompt flow runtime.
-
-**Create a custom connection**
-
-Create a new custom connection in AzureML prompt flow protal with the same key:value pairs as your local custom connection. 
+After that, you can run the flow by clicking the **Run** button.
 
 💡**Tips**:
 
