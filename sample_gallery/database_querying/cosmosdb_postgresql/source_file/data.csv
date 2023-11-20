@@ -1,0 +1,16 @@
+id,account_number,account_type,balance,account_holder_name,date_of_birth,employment_status,creation_date,interest_rate,branch_id,overdraft_limit,currency,last_transaction_date,average_monthly_deposit,average_monthly_withdrawal,financial_goal,goal_amount,risk_tolerance  
+1,1234567890,Checking,5000.00,John Doe,1980-06-01,Employed,2023-01-01,1.00,101,500.00,USD,2023-07-30,2500.00,2000.00,Retirement,1000000.00,Medium  
+2,2345678901,Savings,7000.00,Jane Doe,1985-12-12,Self-employed,2023-02-01,2.00,102,1000.00,USD,2023-07-25,3000.00,1500.00,Buy a House,300000.00,Low
+3,3456789012,Checking,12000.00,James Smith,1990-03-10,Unemployed,2023-03-01,1.50,103,800.00,USD,2023-07-20,3500.00,3000.00,Buy a Car,50000.00,High
+4,4567890123,Savings,20000.00,Jennifer Johnson,1975-09-18,Retired,2023-04-01,2.50,104,0.00,USD,2023-07-15,1000.00,500.00,Travel,20000.00,Low
+5,5678901234,Checking,4500.00,Robert Brown,1987-08-07,Part-time,2023-05-01,1.00,105,600.00,USD,2023-07-10,2000.00,1000.00,Education,40000.00,Medium
+6,6789012345,Savings,10000.00,Patricia Davis,1993-05-22,Full-time,2023-06-01,2.00,106,700.00,USD,2023-07-05,1500.00,1200.00,Start a Business,100000.00,High
+7,7890123456,Checking,25000.00,Michael Miller,1982-11-15,Self-employed,2023-07-01,1.50,107,900.00,USD,2023-08-30,5000.00,3500.00,Buy a House,250000.00,Low
+8,8901234567,Savings,30000.00,Linda Wilson,1978-02-25,Retired,2023-08-01,2.50,108,0.00,USD,2023-08-25,2000.00,1000.00,Travel,35000.00,High
+9,9012345678,Checking,15000.00,William Moore,1995-07-30,Full-time,2023-09-01,1.00,109,700.00,USD,2023-08-20,3000.00,2500.00,Education,60000.00,Medium
+10,0123456789,Savings,20000.00,Elizabeth Taylor,1980-04-28,Part-time,2023-10-01,2.00,110,800.00,USD,2023-08-15,2500.00,2000.00,Start a Business,80000.00,Low
+11,1122334455,Savings,35000.00,Ahmed Hussein,1975-10-12,Self-employed,2023-11-01,2.50,111,1000.00,USD,2023-09-10,4000.00,1500.00,Retirement,500000.00,Low
+12,2233445566,Checking,4000.00,Chen Wei,1990-05-18,Student,2023-12-01,1.00,112,500.00,USD,2023-09-05,500.00,300.00,Education,20000.00,Medium
+13,3344556677,Savings,80000.00,Marie Dupont,1980-01-24,Retired,2024-01-01,3.00,113,0.00,USD,2023-09-01,1000.00,500.00,Travel,30000.00,Low
+14,4455667788,Checking,6000.00,Juan Fernandez,1987-08-30,Part-time,2024-02-01,1.50,114,800.00,USD,2023-08-28,2000.00,1000.00,Buy a Car,25000.00,High
+15,5566778899,Savings,50000.00,Olga Smirnova,1993-12-12,Full-time,2024-03-01,2.00,115,700.00,USD,2023-08-23,3000.00,2000.00,Buy a House,300000.00,Medium

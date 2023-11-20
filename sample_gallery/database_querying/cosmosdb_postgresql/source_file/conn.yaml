@@ -1,0 +1,11 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+name: cosmos
+type: custom
+configs:
+  endpoint: "<your-endpoint>"
+  database: "citus"
+  username: "citus"
+  port: "<your-port>"
+secrets:
+  # Don't replace the '<user-input>' placeholder. The application will prompt you to enter a value when it runs.
+  password: "<user-input>"
