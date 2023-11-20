@@ -187,7 +187,7 @@ The flow contains three nodes:
 * `prompt_content`: This Python node combines the queried customer data and the specific question for each field to create the prompt for the LLM to generate the financial advice.
 * `advice_generator`: This LLM node generates the financial advice based on the prompt.
 
-## Testing the Flow
+## Test the Flow
 
 Once you've installed the `promptflow` package, you can perform a single test on the flow by running the following command:
 
