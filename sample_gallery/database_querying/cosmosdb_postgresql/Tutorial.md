@@ -69,42 +69,25 @@ After the dataset uploaded to the database, you can connect to your postgresql i
 
     ![img](./media/query_sample.png)
 
-## Connection setup in prompt flow
-
-In prompt flow, you can create a **custom connection** to connect to the CosmosDB PostgreSQL database. Creating a custom connection in prompt flow is based on specifying your authentication details as `key:value` pairs in a *YAML file*. For more information, refer to the [prompt flow connection guide](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
-
-In this tutorial, we provide a [conn.yaml](./source_file/conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
-
-```yaml
-$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
-name: cosmos
-type: custom
-configs:
-  endpoint: "<your-endpoint>"
-  database: "citus"
-  username: "citus"
-  port: "<your-port>"
-secrets:
-  password: "<user-input>"
-```
-
-You can find the values for these keys in your CosmosDB instance's connection string:
-![img](./media/conn_str_sample.png)
-
-- endpoint: behind of the `host=` (e.g. `c-db-ozguler.XXXXX.postgres.cosmos.azure.com`).
-- port: behind of the `port=`.
-- database: behind of the `dbname=`.
-- username: behind of the `user=`.
-- password: behind of the `password=`.
-
-To create the connection, execute the following command:
-
-```shell
-cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
-pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> configs.port=<your-port> secrets.password=<your-password>
-```
-
 ## Local environment setup
+
+### Prompt flow dependency
+
+1. Install the prompt flow SDK
+
+```bash
+pip install promptflow promptflow-tools
+```
+
+More information about the SDK installation can be found [here](https://github.com/microsoft/promptflow/tree/main#installation).
+
+2. Install the prompt flow extension in VS code
+
+Search for `promptflow` in the VS code extension marketplace and install the extension.
+
+More information about the extension can be found [here](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow).
+
+### CosmosDB query dependency
 
 For using the Cosmos SQL API, ensure that the `azure-cosmos` package is installed in your environment. This enables you to utilize the Cosmos DB custom connection in your Python code.
 
@@ -144,6 +127,41 @@ However since in this tutorial, we are using the **PostgreSQL Citus API**, so we
     ```
 > 💡 Tips:
 > In this tutorial, we also provide a [**Docker file**](./source_file/image_build/Dockerfile) to simplify the setup process by docker.
+
+## Connection setup in prompt flow
+
+In prompt flow, you can create a **custom connection** to connect to the CosmosDB PostgreSQL database. Creating a custom connection in prompt flow is based on specifying your authentication details as `key:value` pairs in a *YAML file*. For more information, refer to the [prompt flow connection guide](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
+
+In this tutorial, we provide a [conn.yaml](./source_file/conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+name: cosmos
+type: custom
+configs:
+  endpoint: "<your-endpoint>"
+  database: "citus"
+  username: "citus"
+  port: "<your-port>"
+secrets:
+  password: "<user-input>"
+```
+
+You can find the values for these keys in your CosmosDB instance's connection string:
+![img](./media/conn_str_sample.png)
+
+- endpoint: behind of the `host=` (e.g. `c-db-ozguler.XXXXX.postgres.cosmos.azure.com`).
+- port: behind of the `port=`.
+- database: behind of the `dbname=`.
+- username: behind of the `user=`.
+- password: behind of the `password=`.
+
+To create the connection, execute the following command:
+
+```shell
+cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
+pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> configs.port=<your-port> secrets.password=<your-password>
+```
 
 ## Develop a flow to generate financial advise based on a PostgreSQL/CosmosDB query
 
