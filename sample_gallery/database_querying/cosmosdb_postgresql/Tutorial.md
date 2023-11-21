@@ -296,7 +296,7 @@ After creating and testing the flow locally, you can easily upload the flow to A
 In addition to the local SDK, we also provide a cloud SDK for you to manage the flow using Python code or command line. For example, you can use the following command to upload the flow to the Cloud Studio:
 
 ```shell
-cd ./sample_gallery/database_querying       
+cd ./sample_gallery/database_querying/cosmosdb_postgresql       
 pfazure flow create --flow ./personal_finance_recommender --subscription <your-subscription-id> --resource-group <your-resource-group> --workspace-name <your-workspace-name>
 ```
 
@@ -305,13 +305,23 @@ You can refer to the [pfazure documentation](https://microsoft.github.io/promptf
 Once the runtime and connection are set up in Azure AI, you can open the flow you uploaded in the cloud. The flow should look like this:
 ![img](./media/flow_ui.png)
 
-Then you can select the runtime you have created in the previous step:
+### Set runtime and connections in the flow
+
+Select the runtime you have created in the previous step:
 ![img](./media/ui_runtime.png)
 
-And select the connection you have created in the previous step on the LLM nodes:
+And select the custom connection you have created on the cosmos query node:
+![img](./media/ui_flow_cosmos_conn.png)
+
+And aldo select the AzureOpenAI/OpenAI connection on the LLM node:
 ![img](./media/ui_flow_conn.png)
 
 After that, you can run the flow by clicking the **Run** button.
+![img](./media/ui_run.png)
+
+Once the flow run is completed, you can check the generation result by clicking on **View outputs** button.
+![img](./media/ui_view_output.png)
+![img](./media/ui_output.png)
 
 💡**Tips**:
 
