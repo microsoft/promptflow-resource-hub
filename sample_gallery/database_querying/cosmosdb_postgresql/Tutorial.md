@@ -71,9 +71,11 @@ After the dataset uploaded to the database, you can connect to your postgresql i
 
 ## Connection setup in prompt flow
 
+### Custom connection to CosmosDB PostgreSQL database
+
 In prompt flow, you can create a **custom connection** to connect to the CosmosDB PostgreSQL database. Creating a custom connection in prompt flow is based on specifying your authentication details as `key:value` pairs in a *YAML file*. For more information, refer to the [prompt flow connection guide](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
 
-In this tutorial, we provide a [conn.yaml](./source_file/conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
+In this tutorial, we provide a [conn.yaml](./source_file/custom_conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
@@ -103,6 +105,32 @@ To create the connection, execute the following command:
 cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
 pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> configs.port=<your-port> secrets.password=<your-password>
 ```
+
+### OpenAI/Azure OpenAI connection to LLM
+
+To consume the OpenAI endpoint, you need to create the OpenAI connection in prompt flow, same as the Azure OpenAI connection.
+
+Take the Azure OpenAI connection as an example. In this tutorial, we provide a [aoai_conn.yaml](./source_file/aoai_conn.yaml) template, which contains format keys for accessing the Azure OpenAI endpoint:
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
+name: azure_open_ai_connection
+type: azure_open_ai # snake case
+api_key: "to_replace_with_azure_openai_api_key"
+api_base: "to_replace_with_azure_openai_api_endpoint"
+api_type: "azure"
+api_version: "2023-07-01-preview"
+```
+
+To create the connection, execute the following command:
+
+```shell
+cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
+pf connection create -f ./aoai_conn.yaml --set configs.api_key=<your-api=key> configs.api_base=<your-api-base>
+```
+
+Here the connection name is `azure_open_ai_connection`, you can customize it as you like by `--set configs.name=<your-connection-name>`.
+
 
 ## Local environment setup
 
@@ -189,7 +217,31 @@ The flow contains three nodes:
 
 ## Testing the Flow
 
-Once you've installed the `promptflow` package, you can perform a single test on the flow by running the following command:
+Once you've installed the `promptflow` package, you can perform a single test on the flow.
+
+In the [sample flow](./personal_finance_recommender/), we are using the Azure OpenAI connection and the "gpt-4" model by default in the LLM node "advise_generator". You can change the model by modifying the `connection` parameter and `deployment_name` in the [flow.dag.yaml](./personal_finance_recommender/flow.dag.yaml) file.
+
+```yaml
+- name: advise_generator
+  type: llm
+  source:
+    type: code
+    path: advise_generator.jinja2
+  inputs:
+    deployment_name: gpt-4
+    temperature: 0.8
+    top_p: 1
+    max_tokens: 5024
+    presence_penalty: 0
+    frequency_penalty: 0
+    question: ${prompt_context.output}
+    request: ${inputs.request}
+    model: gpt-4
+  connection: azure_open_ai_connection
+  api: chat
+```
+
+by running the following command:
 
 ```shell
 cd ./sample_gallery/database_querying

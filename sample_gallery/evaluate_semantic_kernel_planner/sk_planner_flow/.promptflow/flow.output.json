@@ -3,6 +3,8 @@
   "steps": [
     [
       "Adds value to a value",
+      "Function:",
+      "math.Add",
       ":",
       {
         "variables": {

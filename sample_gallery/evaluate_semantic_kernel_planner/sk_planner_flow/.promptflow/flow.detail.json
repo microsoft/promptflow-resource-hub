@@ -1,7 +1,7 @@
 {
   "flow_runs": [
     {
-      "run_id": "0c6eb26b-a7a4-43dd-a7db-3f88771289e7_0",
+      "run_id": "a3219eb6-1974-4e73-8df6-db61e87169ff_0",
       "status": "Completed",
       "error": null,
       "inputs": {
@@ -12,6 +12,8 @@
         "steps": [
           [
             "Adds value to a value",
+            "Function:",
+            "math.Add",
             ":",
             {
               "variables": {
@@ -23,12 +25,12 @@
       },
       "metrics": null,
       "request": null,
-      "parent_run_id": "0c6eb26b-a7a4-43dd-a7db-3f88771289e7",
-      "root_run_id": "0c6eb26b-a7a4-43dd-a7db-3f88771289e7",
+      "parent_run_id": "a3219eb6-1974-4e73-8df6-db61e87169ff",
+      "root_run_id": "a3219eb6-1974-4e73-8df6-db61e87169ff",
       "source_run_id": null,
       "flow_id": "default_flow_id",
-      "start_time": "2023-11-13T03:38:25.895736Z",
-      "end_time": "2023-11-13T03:38:29.572132Z",
+      "start_time": "2023-11-21T09:53:06.297209Z",
+      "end_time": "2023-11-21T09:53:10.268455Z",
       "index": 0,
       "api_calls": [
         {
@@ -45,6 +47,8 @@
             "steps": [
               [
                 "Adds value to a value",
+                "Function:",
+                "math.Add",
                 ":",
                 {
                   "variables": {
@@ -54,8 +58,8 @@
               ]
             ]
           },
-          "start_time": 1699817905.897735,
-          "end_time": 1699817909.569099,
+          "start_time": 1700531586.300216,
+          "end_time": 1700531590.265407,
           "error": null,
           "children": null,
           "node_name": "planner"
@@ -66,7 +70,7 @@
       "description": "",
       "tags": null,
       "system_metrics": {
-        "duration": 3.676396,
+        "duration": 3.971246,
         "total_tokens": 0
       },
       "result": {
@@ -74,6 +78,8 @@
         "steps": [
           [
             "Adds value to a value",
+            "Function:",
+            "math.Add",
             ":",
             {
               "variables": {
@@ -89,8 +95,8 @@
   "node_runs": [
     {
       "node": "planner",
-      "flow_run_id": "0c6eb26b-a7a4-43dd-a7db-3f88771289e7",
-      "run_id": "0c6eb26b-a7a4-43dd-a7db-3f88771289e7_planner_0",
+      "flow_run_id": "a3219eb6-1974-4e73-8df6-db61e87169ff",
+      "run_id": "a3219eb6-1974-4e73-8df6-db61e87169ff_planner_0",
       "status": "Completed",
       "inputs": {
         "aoai_deployment": "gpt-4-32k",
@@ -103,6 +109,8 @@
         "steps": [
           [
             "Adds value to a value",
+            "Function:",
+            "math.Add",
             ":",
             {
               "variables": {
@@ -114,9 +122,9 @@
       },
       "metrics": null,
       "error": null,
-      "parent_run_id": "0c6eb26b-a7a4-43dd-a7db-3f88771289e7_0",
-      "start_time": "2023-11-13T03:38:25.897735Z",
-      "end_time": "2023-11-13T03:38:29.569099Z",
+      "parent_run_id": "a3219eb6-1974-4e73-8df6-db61e87169ff_0",
+      "start_time": "2023-11-21T09:53:06.300216Z",
+      "end_time": "2023-11-21T09:53:10.266426Z",
       "index": 0,
       "api_calls": [
         {
@@ -133,6 +141,8 @@
             "steps": [
               [
                 "Adds value to a value",
+                "Function:",
+                "math.Add",
                 ":",
                 {
                   "variables": {
@@ -142,8 +152,8 @@
               ]
             ]
           },
-          "start_time": 1699817905.897735,
-          "end_time": 1699817909.569099,
+          "start_time": 1700531586.300216,
+          "end_time": 1700531590.265407,
           "error": null,
           "children": null,
           "node_name": "planner"
@@ -153,17 +163,19 @@
       "cached_run_id": null,
       "cached_flow_run_id": null,
       "logs": {
-        "stdout": "[2023-11-13T03:38:29+0000] 1100\n",
+        "stdout": "[2023-11-21T09:53:10+0000] 1100\n",
         "stderr": ""
       },
       "system_metrics": {
-        "duration": 3.671364
+        "duration": 3.96621
       },
       "result": {
         "result": "1100",
         "steps": [
           [
             "Adds value to a value",
+            "Function:",
+            "math.Add",
             ":",
             {
               "variables": {
