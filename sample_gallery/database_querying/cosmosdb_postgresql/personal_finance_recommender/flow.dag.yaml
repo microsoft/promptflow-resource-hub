@@ -34,44 +34,19 @@ nodes:
     input1: ${query_cosmos.output}
   use_variants: false
 - name: advise_generator
-  use_variants: true
-node_variants:
-  advise_generator:
-    default_variant_id: variant_0
-    variants:
-      variant_0:
-        node:
-          type: llm
-          source:
-            type: code
-            path: advise_generator.jinja2
-          inputs:
-            deployment_name: gpt-35-turbo-16k
-            temperature: 0.8
-            top_p: 1
-            max_tokens: 5024
-            presence_penalty: 0
-            frequency_penalty: 0
-            question: ${prompt_context.output}
-            request: ${inputs.request}
-            model: gpt-4
-          connection: open_ai_connection
-          api: chat
-      variant_1:
-        node:
-          type: llm
-          source:
-            type: code
-            path: advise_generator__variant_1.jinja2
-          inputs:
-            deployment_name: turbo-35
-            temperature: 0.8
-            top_p: 1
-            max_tokens: 0
-            presence_penalty: 0
-            frequency_penalty: 0
-            question: ${prompt_context.output}
-            request: ${inputs.request}
-            model: gpt-4
-          connection: open_ai_connection
-          api: chat
+  type: llm
+  source:
+    type: code
+    path: advise_generator.jinja2
+  inputs:
+    deployment_name: gpt-4
+    temperature: 0.8
+    top_p: 1
+    max_tokens: 5024
+    presence_penalty: 0
+    frequency_penalty: 0
+    question: ${prompt_context.output}
+    request: ${inputs.request}
+    model: gpt-4
+  connection: azure_open_ai_connection
+  api: chat

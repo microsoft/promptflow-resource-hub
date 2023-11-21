@@ -104,7 +104,25 @@ A small dataset can be found here: [data.jsonl](./sk_planner_flow/data.jsonl). T
 
 ## Single test
 
-With the prompt flow for the semantic kernel planner now created, you can perform a single test on the flow to verify if it operates as expected.
+With the flow for the semantic kernel planner now created, you can perform a single test on the flow to verify if it operates as expected.
+
+In the sample flow, we use the "gpt-4-32k" model by default. You can change the model by modifying the `model` parameter and `aoai_deployment` in the [flow.dag.yaml](./sk_planner_flow/flow.dag.yaml) file. 
+
+```yaml
+nodes:
+- name: planner
+  type: python
+  source:
+    type: code
+    path: planner.py
+  inputs:
+    conn: custom_connection
+    ask: ${inputs.ask}
+    model: gpt-4-32k
+    aoai_deployment: gpt-4-32k
+```
+
+Run the following command to test the flow:
 
 ```bash
 cd ./sample_gallery/evaluate_semantic_kernel_planner

@@ -46,7 +46,8 @@ def my_python_tool(ask: str, model: str, aoai_deployment: str, conn: CustomConne
   #result = asyncio.run(plan.invoke_async())
   #result = plan.invoke_async()
 
-  steps = [(step.description, ":", step._state.__dict__) for step in plan._steps]
+  #steps = [(step.description, ":", step._state.__dict__) for step in plan._steps]
+  steps = [(step.description, "Function:", step.skill_name + "." + step._function.name, ":", step._state.__dict__) for step in plan._steps]  
 
   return_value = {"result": result, "steps": steps}
   

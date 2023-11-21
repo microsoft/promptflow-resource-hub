@@ -1,7 +1,7 @@
 #name: eval_fulfillment_ratio_default_20231113_150839_477000
 display_name: ${run}_eval_fulfillment_ratio_${timestamp} # supported macros: ${variant_id},${timestamp},${run}
 flow: ../eval_fulfillment_ratio
-data: ./source_file/data.jsonl
+data: ./data.jsonl
 run: sk_planner_default_20231107_213812_513000
 column_mapping:
   ask: ${run.inputs.ask}
