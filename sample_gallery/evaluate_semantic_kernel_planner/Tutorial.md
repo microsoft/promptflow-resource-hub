@@ -284,7 +284,7 @@ If you're unsatisfied with the metrics and results, you can return to your seman
 * You can fine-tune the prompt of your customized [plugins](./sk_planner_flow/skills/). For example, you can change th [SummarizeSkill/MakeAbstractReadable/skprompt.txt](./sk_planner_flow/skills/SummarizeSkill/MakeAbstractReadable/skprompt.txt) file of the plugin to modify or to add more prompts.
 * In addition, you can import more plugins in the [planner.py](./sk_planner_flow/planner.py).
 
-Then, you can start further fine-tuning, re-run and evaluate the new version of the flow. This is the iterative process of flow development and evaluation. 
+Then, you can start further fine-tuning, re-run and evaluate the new version of the flow. This is the iterative process of flow development and evaluation.
 
 After conducting all the experiments, you can manage and visualize your runs in a consolidated run list using the VS Code extension:
 
@@ -303,7 +303,7 @@ In some cases, you may already have a [Semantic kernel python script](./source_f
 
 You can use the `pf init` CLI command to do it, which will construct a standard flow by creating a wrapper for your specified existing code, and composing the YAML file automatically.
 
-For example, the entry function in your [existing code]((./source_file/sk_planner.py)) is as follows:
+For example, the entry function in your [existing code](./source_file/sk_planner.py) is as follows:
 
 ```python
 # function in the sk_planner.py to be wrapped
