@@ -236,7 +236,9 @@ The flow contains three nodes:
 
 Once you've installed the `promptflow` package, you can perform a single test on the flow.
 
-In the [sample flow](./personal_finance_recommender/), we are using the Azure OpenAI connection and the "gpt-4" model by default in the LLM node "advise_generator". You can change the model by modifying the `connection` parameter and `deployment_name` in the [flow.dag.yaml](./personal_finance_recommender/flow.dag.yaml) file.
+> ⚠ Note:
+> In the [sample flow](./personal_finance_recommender/), we are using the Azure OpenAI connection and the "gpt-4" model by default in the LLM node "advise_generator". You can change the model by modifying the `connection` parameter and `deployment_name` in the [flow.dag.yaml](./personal_finance_recommender/flow.dag.yaml) file.
+> For turbo 35, please modify the `max_tokens` to be 4096 to meet the model's limitation.
 
 ```yaml
 - name: advise_generator
@@ -386,6 +388,9 @@ And aldo select the AzureOpenAI/OpenAI connection on the LLM node:
 ![img](./media/ui_flow_conn.png)
 
 After that, you can run the flow by clicking the **Run** button.
+> ⚠ Note:
+> For turbo 35, please modify the `max_tokens` to be 4096 to meet the model's limitation.
+
 ![img](./media/ui_run.png)
 
 Once the flow run is completed, you can check the generation result by clicking on **View outputs** button.
