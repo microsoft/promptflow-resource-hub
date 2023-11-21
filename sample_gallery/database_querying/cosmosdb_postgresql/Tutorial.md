@@ -69,69 +69,6 @@ After the dataset uploaded to the database, you can connect to your postgresql i
 
     ![img](./media/query_sample.png)
 
-## Connection setup in prompt flow
-
-### Custom connection to CosmosDB PostgreSQL database
-
-In prompt flow, you can create a **custom connection** to connect to the CosmosDB PostgreSQL database. Creating a custom connection in prompt flow is based on specifying your authentication details as `key:value` pairs in a *YAML file*. For more information, refer to the [prompt flow connection guide](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
-
-In this tutorial, we provide a [conn.yaml](./source_file/custom_conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
-
-```yaml
-$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
-name: cosmos
-type: custom
-configs:
-  endpoint: "<your-endpoint>"
-  database: "citus"
-  username: "citus"
-  port: "<your-port>"
-secrets:
-  password: "<user-input>"
-```
-
-You can find the values for these keys in your CosmosDB instance's connection string:
-![img](./media/conn_str_sample.png)
-
-- endpoint: behind of the `host=` (e.g. `c-db-ozguler.XXXXX.postgres.cosmos.azure.com`).
-- port: behind of the `port=`.
-- database: behind of the `dbname=`.
-- username: behind of the `user=`.
-- password: behind of the `password=`.
-
-To create the connection, execute the following command:
-
-```shell
-cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
-pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> configs.port=<your-port> secrets.password=<your-password>
-```
-
-### OpenAI/Azure OpenAI connection to LLM
-
-To consume the OpenAI endpoint, you need to create the OpenAI connection in prompt flow, same as the Azure OpenAI connection.
-
-Take the Azure OpenAI connection as an example. In this tutorial, we provide a [aoai_conn.yaml](./source_file/aoai_conn.yaml) template, which contains format keys for accessing the Azure OpenAI endpoint:
-
-```yaml
-$schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
-name: azure_open_ai_connection
-type: azure_open_ai # snake case
-api_key: "to_replace_with_azure_openai_api_key"
-api_base: "to_replace_with_azure_openai_api_endpoint"
-api_type: "azure"
-api_version: "2023-07-01-preview"
-```
-
-To create the connection, execute the following command:
-
-```shell
-cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
-pf connection create -f ./aoai_conn.yaml --set configs.api_key=<your-api=key> configs.api_base=<your-api-base>
-```
-
-Here the connection name is `azure_open_ai_connection`, you can customize it as you like by `--set configs.name=<your-connection-name>`.
-
-
 ## Local environment setup
 
 ### Prompt flow dependency
@@ -193,9 +130,11 @@ However since in this tutorial, we are using the **PostgreSQL Citus API**, so we
 
 ## Connection setup in prompt flow
 
+### Custom connection to CosmosDB PostgreSQL database
+
 In prompt flow, you can create a **custom connection** to connect to the CosmosDB PostgreSQL database. Creating a custom connection in prompt flow is based on specifying your authentication details as `key:value` pairs in a *YAML file*. For more information, refer to the [prompt flow connection guide](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html#create-a-connection).
 
-In this tutorial, we provide a [conn.yaml](./source_file/conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
+In this tutorial, we provide a [custom_conn.yaml](./source_file/custom_conn.yaml) template, which contains format keys for accessing the CosmosDB PostgreSQL database:
 
 ```yaml
 $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
@@ -225,6 +164,31 @@ To create the connection, execute the following command:
 cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
 pf connection create -f ./conn.yaml --set configs.endpoint=<your-endpoint> configs.port=<your-port> secrets.password=<your-password>
 ```
+
+### OpenAI/Azure OpenAI connection to LLM
+
+To consume the OpenAI endpoint, you need to create the OpenAI connection in prompt flow, same as the Azure OpenAI connection.
+
+Take the Azure OpenAI connection as an example. In this tutorial, we provide a [aoai_conn.yaml](./source_file/aoai_conn.yaml) template, which contains format keys for accessing the Azure OpenAI endpoint:
+
+```yaml
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
+name: azure_open_ai_connection
+type: azure_open_ai # snake case
+api_key: "to_replace_with_azure_openai_api_key"
+api_base: "to_replace_with_azure_openai_api_endpoint"
+api_type: "azure"
+api_version: "2023-07-01-preview"
+```
+
+To create the connection, execute the following command:
+
+```shell
+cd ./sample_gallery/database_querying/cosmosdb_postgresql/source_file
+pf connection create -f ./aoai_conn.yaml --set configs.api_key=<your-api=key> configs.api_base=<your-api-base>
+```
+
+Here the connection name is `azure_open_ai_connection`, you can customize it as you like by `--set configs.name=<your-connection-name>`.
 
 ## Develop a flow to generate financial advise based on a PostgreSQL/CosmosDB query
 
