@@ -320,7 +320,7 @@ pfazure flow create --flow ./personal_finance_recommender --subscription <your-s
 
 You can refer to the [pfazure documentation](https://microsoft.github.io/promptflow/reference/pfazure-command-reference.html#pfazure) for more details.
 
-Once the runtime and connection are set up in Azure AI, you can open the flow you uploaded in the cloud. The flow should look like this:
+You can click on the portal link after "flow_portal_url" in the command reponse to go the flow page in Azure AI portal. Once the runtime and connection are set up in Azure AI, you can open the flow you uploaded in the cloud. The flow should look like this:
 ![img](./media/flow_ui.png)
 
 ### Set runtime and connections in the flow
