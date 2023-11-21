@@ -6,6 +6,6 @@ from promptflow import tool
 @tool
 def my_python_tool(groundtruth_answer: str) -> bool:
   is_standard_answer = False
-  if groundtruth_answer == 'no_standard_answer':
+  if groundtruth_answer == 'no standard answer':
     is_standard_answer = True
   return is_standard_answer

@@ -1,0 +1,43 @@
+{
+  "orientation": "Vertical",
+  "nodeLayouts": {
+    "inputs": {
+      "x": 67.5,
+      "y": 62,
+      "index": -1
+    },
+    "outputs": {
+      "x": 67.5,
+      "y": 502,
+      "index": -1
+    },
+    "query_cosmos": {
+      "x": 12,
+      "y": 172,
+      "height": 75,
+      "index": 0
+    },
+    "prompt_context": {
+      "x": 12,
+      "y": 282,
+      "height": 75,
+      "index": 1
+    },
+    "advise_generator": {
+      "x": 123,
+      "y": 392,
+      "height": 75,
+      "index": 2
+    }
+  },
+  "viewport": {
+    "transformMatrix": [
+      1,
+      0,
+      0,
+      1,
+      42.383941650390625,
+      -297.3671875
+    ]
+  }
+}
