@@ -1,0 +1,122 @@
+inputs:
+  question:
+    type: string
+    default: tell me how the economy goes...
+    is_chat_input: true
+  chat_history:
+    type: list
+    default:
+    - inputs:
+        question: tell me how the economy goes...
+      outputs:
+        line_number: 0
+        output: "I apologize for any confusion earlier. As I mentioned earlier, the
+          IMF's October 2023 report states that the global economy is recovering
+          slowly from various crises, with slow and uneven growth and growing
+          divergences. However, the situation is complex and dynamic, and the
+          extent and severity of these risks may vary depending on the country
+          or region. It is important to monitor ongoing developments and consult
+          with experts for a more nuanced and up-to-date understanding of the
+          global economic situation. (Source: IMFOctober.pdf)"
+    is_chat_input: false
+    is_chat_history: true
+outputs:
+  output:
+    type: string
+    reference: ${answer_the_question_with_context.output}
+    evaluation_only: false
+    is_chat_output: true
+nodes:
+- name: modify_query_with_history
+  type: llm
+  source:
+    type: code
+    path: modify_query_with_history.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo-02
+    temperature: 0.7
+    top_p: 1
+    stop: ""
+    max_tokens: 0
+    presence_penalty: 0
+    frequency_penalty: 0
+    logit_bias: ""
+    chat_history: ${inputs.chat_history}
+    question: ${flow.question}
+  provider: AzureOpenAI
+  connection: aoai_ozguler_02
+  api: chat
+  module: promptflow.tools.aoai
+  use_variants: false
+- name: embed_the_question
+  type: python
+  source:
+    type: package
+    tool: promptflow.tools.embedding.embedding
+  inputs:
+    connection: aoai_ozguler_02
+    deployment_name: text-embedding-ada-002
+    input: ${modify_query_with_history.output}
+  aggregation: false
+  use_variants: false
+- name: generate_prompt_context
+  type: python
+  source:
+    type: code
+    path: generate_prompt_context.py
+  inputs:
+    search_result: ${vectordblookup.output}
+  aggregation: false
+  use_variants: false
+- name: Prompt_variants
+  type: prompt
+  source:
+    type: code
+    path: Prompt_variants__Variant_0.jinja2
+  inputs:
+    chat_history: ${flow.chat_history}
+    contexts: ${generate_prompt_context.output}
+    question: ${flow.question}
+  aggregation: false
+  use_variants: false
+- name: answer_the_question_with_context
+  type: llm
+  source:
+    type: code
+    path: answer_the_question_with_context.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo-02
+    temperature: 0.7
+    top_p: 1
+    stop: ""
+    max_tokens: 3000
+    presence_penalty: 0
+    frequency_penalty: 0
+    logit_bias: ""
+    prompt_text: ${Prompt_variants.output}
+  provider: AzureOpenAI
+  connection: aoai_ozguler_02
+  api: chat
+  module: promptflow.tools.aoai
+  aggregation: false
+  use_variants: false
+- name: vectordblookup
+  type: python
+  source:
+    type: package
+    tool: promptflow_vectordb.tool.vector_db_lookup.VectorDBLookup.search
+  inputs:
+    connection: ACS_conn
+    index_name: worldeconomyoctober
+    search_filters:
+      filter: ""
+    search_params:
+      select: ""
+    text_field: '""'
+    vector_field: content_vector_open_ai
+    top_k: 3
+    vector: ${embed_the_question.output}
+  use_variants: false
+node_variants: {}
+environment:
+  python_requirements_txt: requirements.txt

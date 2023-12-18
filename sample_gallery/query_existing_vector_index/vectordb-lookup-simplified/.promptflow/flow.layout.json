@@ -1,0 +1,55 @@
+{
+  "orientation": "Vertical",
+  "nodeLayouts": {
+    "inputs": {
+      "x": 242,
+      "y": 62,
+      "index": -1
+    },
+    "outputs": {
+      "x": 242,
+      "y": 832,
+      "index": -1
+    },
+    "modify_query_with_history": {
+      "x": 187,
+      "y": 172,
+      "index": 0
+    },
+    "embed_the_question": {
+      "x": 187,
+      "y": 282,
+      "index": 1
+    },
+    "generate_prompt_context": {
+      "x": 133.83984375,
+      "y": 487.6484375,
+      "index": 2
+    },
+    "Prompt_variants": {
+      "x": 242,
+      "y": 612,
+      "index": 3
+    },
+    "answer_the_question_with_context": {
+      "x": 242,
+      "y": 722,
+      "index": 4
+    },
+    "vectordblookup": {
+      "x": 137.7734375,
+      "y": 386.203125,
+      "index": 5
+    }
+  },
+  "viewport": {
+    "transformMatrix": [
+      1,
+      0,
+      0,
+      1,
+      -108.83984375,
+      -637.5972290039062
+    ]
+  }
+}

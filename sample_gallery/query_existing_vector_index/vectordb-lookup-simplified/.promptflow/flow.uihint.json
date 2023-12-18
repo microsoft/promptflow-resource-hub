@@ -1,0 +1,40 @@
+{
+  "nodes": {
+    "modify_query_with_history": {
+      "variant_0": {
+        "inputs": {},
+        "inputsValue": {}
+      }
+    },
+    "embed_the_question": {
+      "variant_0": {
+        "inputs": {},
+        "inputsValue": {}
+      }
+    },
+    "vectordblookup": {
+      "variant_0": {
+        "inputs": {},
+        "inputsValue": {}
+      }
+    },
+    "generate_prompt_context": {
+      "variant_0": {
+        "inputs": {},
+        "inputsValue": {}
+      }
+    },
+    "Prompt_variants": {
+      "Variant_0": {
+        "inputs": {},
+        "inputsValue": {}
+      }
+    },
+    "answer_the_question_with_context": {
+      "variant_0": {
+        "inputs": {},
+        "inputsValue": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "package": {
+    "promptflow.tools.embedding.embedding": {
+      "name": "Embedding",
+      "type": "python",
+      "inputs": {
+        "connection": {
+          "type": [
+            "AzureOpenAIConnection",
+            "OpenAIConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false
+        },
+        "deployment_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "AzureOpenAIConnection"
+          ],
+          "model_list": [
+            "text-embedding-ada-002",
+            "text-search-ada-doc-001",
+            "text-search-ada-query-001"
+          ],
+          "capabilities": {
+            "completion": false,
+            "chat_completion": false,
+            "embeddings": true
+          },
+          "allow_manual_entry": false,
+          "is_multi_select": false
+        },
+        "input": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false
+        },
+        "model": {
+          "type": [
+            "string"
+          ],
+          "enum": [
+            "text-embedding-ada-002",
+            "text-search-ada-doc-001",
+            "text-search-ada-query-001"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "OpenAIConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false
+        }
+      },
+      "description": "Use Open AI's embedding model to create an embedding vector representing the input text.",
+      "module": "promptflow.tools.embedding",
+      "function": "embedding",
+      "is_builtin": true,
+      "package": "promptflow-tools",
+      "package_version": "0.1.0b8",
+      "toolId": "promptflow.tools.embedding.embedding"
+    },
+    "promptflow_vectordb.tool.vector_db_lookup.VectorDBLookup.search": {
+      "name": "Vector DB Lookup",
+      "type": "python",
+      "inputs": {
+        "class_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "WeaviateConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "collection_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "QdrantConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "connection": {
+          "type": [
+            "CognitiveSearchConnection",
+            "QdrantConnection",
+            "WeaviateConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "index_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "CognitiveSearchConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "search_filters": {
+          "type": [
+            "object"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "CognitiveSearchConnection",
+            "QdrantConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "search_params": {
+          "type": [
+            "object"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "CognitiveSearchConnection",
+            "QdrantConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "text_field": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "CognitiveSearchConnection",
+            "QdrantConnection",
+            "WeaviateConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "top_k": {
+          "type": [
+            "int"
+          ],
+          "default": "3",
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "vector": {
+          "type": [
+            "list"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        },
+        "vector_field": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "CognitiveSearchConnection"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "input_type": "default"
+        }
+      },
+      "description": "Search vector based query from existing Vector Database.",
+      "module": "promptflow_vectordb.tool.vector_db_lookup",
+      "class_name": "VectorDBLookup",
+      "function": "search",
+      "is_builtin": true,
+      "package": "promptflow-vectordb",
+      "package_version": "0.0.1",
+      "enable_kwargs": false,
+      "toolId": "promptflow_vectordb.tool.vector_db_lookup.VectorDBLookup.search",
+      "tooltip": "Search vector based query from existing Vector Database."
+    }
+  },
+  "code": {
+    "Prompt_variants__Variant_0.jinja2": {
+      "name": "Prompt_variants__Variant_0.jinja2",
+      "type": "prompt",
+      "inputs": {
+        "chat_history": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${flow.chat_history}"
+        },
+        "contexts": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${generate_prompt_context.output}"
+        },
+        "question": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${flow.question}"
+        }
+      },
+      "source": "Prompt_variants__Variant_0.jinja2",
+      "is_builtin": false,
+      "toolId": "Prompt_variants__Variant_0.jinja2"
+    },
+    "answer_the_question_with_context.jinja2": {
+      "name": "answer_the_question_with_context.jinja2",
+      "type": "prompt",
+      "inputs": {
+        "prompt_text": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${Prompt_variants.output}"
+        }
+      },
+      "source": "answer_the_question_with_context.jinja2",
+      "is_builtin": false,
+      "toolId": "answer_the_question_with_context.jinja2"
+    },
+    "generate_prompt_context.py": {
+      "name": "generate_prompt_context.py",
+      "type": "python",
+      "inputs": {
+        "search_result": {
+          "type": [
+            "object"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${search_question_from_indexed_docs.output}"
+        }
+      },
+      "description": "Generate the context for the prompt.",
+      "source": "generate_prompt_context.py",
+      "function": "generate_prompt_context",
+      "is_builtin": false,
+      "toolId": "generate_prompt_context.py"
+    },
+    "modify_query_with_history.jinja2": {
+      "name": "modify_query_with_history.jinja2",
+      "type": "prompt",
+      "inputs": {
+        "chat_history": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${inputs.chat_history}"
+        },
+        "question": {
+          "type": [
+            "string"
+          ],
+          "allow_manual_entry": false,
+          "is_multi_select": false,
+          "value": "${flow.question}"
+        }
+      },
+      "source": "modify_query_with_history.jinja2",
+      "is_builtin": false,
+      "toolId": "modify_query_with_history.jinja2"
+    }
+  }
+}
