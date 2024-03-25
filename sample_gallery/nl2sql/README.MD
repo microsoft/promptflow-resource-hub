@@ -102,3 +102,9 @@ Once the connections are created, modify the python and LLM nodes in the flow.da
 #### Sample Flow Run (VSCode)
 
 ![Sample Flow Run](./media/flow_run_sample.png)
+
+### Important Notes
+
+- This sample is not intended for production.
+- Given approach only works when the Table and Column names in the Database are descriptive enough and can be mapped through the natural language query.
+- Be descriptive in the ask. Explicitly call out the column names and relationships where possible to be able to generate accurate queries.
