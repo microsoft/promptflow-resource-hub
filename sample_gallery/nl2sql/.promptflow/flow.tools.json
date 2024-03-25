@@ -1,0 +1,113 @@
+{
+  "package": {},
+  "code": {
+    "get_table_names.py": {
+      "type": "python",
+      "inputs": {
+        "schema_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "sqlconn": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "get_table_names.py",
+      "function": "get_table_names"
+    },
+    "identify_table_llm.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "table_names": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_query": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "identify_table_llm.jinja2"
+    },
+    "get_table_schema.py": {
+      "type": "python",
+      "inputs": {
+        "tables": {
+          "type": [
+            "string"
+          ]
+        },
+        "schema_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "sqlconn": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "get_table_schema.py",
+      "function": "get_table_schema"
+    },
+    "generate_sql_query_variant_1.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "table_schemainfo": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_query": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "generate_sql_query_variant_1.jinja2"
+    },
+    "validate_sql_query.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "table_schemainfo": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_query": {
+          "type": [
+            "string"
+          ]
+        },
+        "sql_query": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "validate_sql_query.jinja2"
+    },
+    "generate_sql_query.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "table_schemainfo": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_query": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "generate_sql_query.jinja2"
+    }
+  }
+}
