@@ -1,7 +1,7 @@
 {
   "flow_runs": [
     {
-      "run_id": "75012942-c5a8-477d-939a-3d929fa09df7_0",
+      "run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_0",
       "status": "Completed",
       "error": null,
       "inputs": {
@@ -9,24 +9,24 @@
         "schema_name": "SalesLT"
       },
       "output": {
-        "output_prompt": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n"
+        "output_prompt": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n"
       },
       "metrics": null,
       "request": null,
-      "parent_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
-      "root_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
+      "parent_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
+      "root_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
       "source_run_id": null,
       "flow_id": "default_flow_id",
-      "start_time": "2024-03-25T04:21:00.092164Z",
-      "end_time": "2024-03-25T04:22:26.717980Z",
+      "start_time": "2024-03-25T10:08:17.647143Z",
+      "end_time": "2024-03-25T10:09:54.734140Z",
       "index": 0,
       "api_calls": [
         {
           "name": "flow",
           "node_name": "flow",
           "type": "Flow",
-          "start_time": 1711300860.092164,
-          "end_time": 1711300946.71798,
+          "start_time": 1711321697.647143,
+          "end_time": 1711321794.73414,
           "children": [
             {
               "name": "get_table_names",
@@ -47,13 +47,13 @@
                 "SalesOrderDetail",
                 "SalesOrderHeader"
               ],
-              "start_time": 1711300860.095144,
-              "end_time": 1711300905.733731,
+              "start_time": 1711321697.650165,
+              "end_time": 1711321742.295789,
               "error": null,
               "children": [],
               "node_name": "get_table_names",
               "parent_id": "",
-              "id": "c2cbbf0f-7c09-41b8-9992-0080a084100c",
+              "id": "d36d9f6a-4641-4756-a3df-2cbe5c47cd0f",
               "system_metrics": {}
             },
             {
@@ -79,9 +79,9 @@
                   "SalesOrderHeader"
                 ]
               },
-              "output": "['Customer', 'Address', 'CustomerAddress']",
-              "start_time": 1711300905.737768,
-              "end_time": 1711300907.349071,
+              "output": "['Address', 'Customer', 'CustomerAddress']",
+              "start_time": 1711321742.295789,
+              "end_time": 1711321744.024885,
               "error": null,
               "children": [
                 {
@@ -114,14 +114,14 @@
                     }
                   },
                   "output": {
-                    "id": "chatcmpl-96W8AzO37921Uh2qxcvSUOWPuk928",
+                    "id": "chatcmpl-96bYEWkQTGNGsRShnw545wMkaNiAF",
                     "choices": [
                       {
                         "finish_reason": "stop",
                         "index": 0,
                         "logprobs": null,
                         "message": {
-                          "content": "['Customer', 'Address', 'CustomerAddress']",
+                          "content": "['Address', 'Customer', 'CustomerAddress']",
                           "role": "assistant",
                           "function_call": null,
                           "tool_calls": null
@@ -146,7 +146,7 @@
                         }
                       }
                     ],
-                    "created": 1711340506,
+                    "created": 1711361342,
                     "model": "gpt-4",
                     "object": "chat.completion",
                     "system_fingerprint": null,
@@ -179,13 +179,13 @@
                       }
                     ]
                   },
-                  "start_time": 1711300905.744448,
-                  "end_time": 1711300907.348721,
+                  "start_time": 1711321742.295789,
+                  "end_time": 1711321744.024885,
                   "error": null,
                   "children": [],
                   "node_name": null,
-                  "parent_id": "bb35fa04-15a1-4d9f-81b1-25d1027df54d",
-                  "id": "7dc6880a-99cd-4d82-9ecc-2ab4e253a4af",
+                  "parent_id": "92e9dd53-a2b0-410e-b9cc-d72caeabfed0",
+                  "id": "914f3040-f143-4e33-aee6-d504ba89e5f6",
                   "system_metrics": {
                     "completion_tokens": 10,
                     "prompt_tokens": 118,
@@ -195,7 +195,7 @@
               ],
               "node_name": "identify_table_llm",
               "parent_id": "",
-              "id": "bb35fa04-15a1-4d9f-81b1-25d1027df54d",
+              "id": "92e9dd53-a2b0-410e-b9cc-d72caeabfed0",
               "system_metrics": {
                 "completion_tokens": 10,
                 "prompt_tokens": 118,
@@ -207,17 +207,17 @@
               "type": "Tool",
               "inputs": {
                 "sqlconn": "custom-sqlconn",
-                "tables": "['Customer', 'Address', 'CustomerAddress']",
+                "tables": "['Address', 'Customer', 'CustomerAddress']",
                 "schema_name": "SalesLT"
               },
               "output": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/",
-              "start_time": 1711300907.354536,
-              "end_time": 1711300923.53027,
+              "start_time": 1711321744.024885,
+              "end_time": 1711321759.781553,
               "error": null,
               "children": [],
               "node_name": "get_table_schema",
               "parent_id": "",
-              "id": "95179729-093e-45d7-8907-5b389eaee228",
+              "id": "2033bd1a-b106-432f-a720-212575167920",
               "system_metrics": {}
             },
             {
@@ -232,9 +232,9 @@
                 },
                 "table_schemainfo": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/"
               },
-              "output": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
-              "start_time": 1711300923.535276,
-              "end_time": 1711300927.950698,
+              "output": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+              "start_time": 1711321759.783565,
+              "end_time": 1711321765.727272,
               "error": null,
               "children": [
                 {
@@ -267,14 +267,14 @@
                     }
                   },
                   "output": {
-                    "id": "chatcmpl-96W8SBPADJ8iPDs8j4ZDfXnvgLSE3",
+                    "id": "chatcmpl-96bYWSSBVYPE0I0BGdwHXxZpbDhhD",
                     "choices": [
                       {
                         "finish_reason": "stop",
                         "index": 0,
                         "logprobs": null,
                         "message": {
-                          "content": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+                          "content": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
                           "role": "assistant",
                           "function_call": null,
                           "tool_calls": null
@@ -299,14 +299,14 @@
                         }
                       }
                     ],
-                    "created": 1711340524,
+                    "created": 1711361360,
                     "model": "gpt-4",
                     "object": "chat.completion",
                     "system_fingerprint": null,
                     "usage": {
-                      "completion_tokens": 55,
+                      "completion_tokens": 54,
                       "prompt_tokens": 1664,
-                      "total_tokens": 1719
+                      "total_tokens": 1718
                     },
                     "prompt_filter_results": [
                       {
@@ -332,27 +332,27 @@
                       }
                     ]
                   },
-                  "start_time": 1711300923.541276,
-                  "end_time": 1711300927.950698,
+                  "start_time": 1711321759.783565,
+                  "end_time": 1711321765.727272,
                   "error": null,
                   "children": [],
                   "node_name": null,
-                  "parent_id": "1255e527-5293-4a7a-8565-6bc4f4215c69",
-                  "id": "dccbb5a6-ed15-4758-95e1-98655051721e",
+                  "parent_id": "effbfd08-b9ae-411d-8b5d-b5f3da9aa061",
+                  "id": "9ec8273a-6a22-4122-bacc-69161d1de3e2",
                   "system_metrics": {
-                    "completion_tokens": 55,
+                    "completion_tokens": 54,
                     "prompt_tokens": 1664,
-                    "total_tokens": 1719
+                    "total_tokens": 1718
                   }
                 }
               ],
               "node_name": "generate_sql_query",
               "parent_id": "",
-              "id": "1255e527-5293-4a7a-8565-6bc4f4215c69",
+              "id": "effbfd08-b9ae-411d-8b5d-b5f3da9aa061",
               "system_metrics": {
-                "completion_tokens": 55,
+                "completion_tokens": 54,
                 "prompt_tokens": 1664,
-                "total_tokens": 1719
+                "total_tokens": 1718
               }
             },
             {
@@ -366,12 +366,12 @@
                 },
                 "table_schemainfo": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/",
                 "user_query": "Show the CompanyName for all customers with an address in City 'Dallas'",
-                "sql_query": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+                "sql_query": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
                 "stream": false
               },
-              "output": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n",
-              "start_time": 1711300927.953898,
-              "end_time": 1711300946.713979,
+              "output": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n",
+              "start_time": 1711321765.742889,
+              "end_time": 1711321794.73414,
               "error": null,
               "children": [
                 {
@@ -386,7 +386,7 @@
                       },
                       {
                         "role": "user",
-                        "content": "Question: Show the CompanyName for all customers with an address in City 'Dallas'\nT-SQL Query: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\nValidatedQuery:\nExplaination:"
+                        "content": "Question: Show the CompanyName for all customers with an address in City 'Dallas'\nT-SQL Query: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\nValidatedQuery:\nExplaination:"
                       }
                     ],
                     "temperature": 1.0,
@@ -404,14 +404,14 @@
                     }
                   },
                   "output": {
-                    "id": "chatcmpl-96W8WDnttNfcUObqerQRw6q1KL3C1",
+                    "id": "chatcmpl-96bYcMOnAi4MhYia2R6jSQ16wokOj",
                     "choices": [
                       {
                         "finish_reason": "stop",
                         "index": 0,
                         "logprobs": null,
                         "message": {
-                          "content": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n",
+                          "content": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n",
                           "role": "assistant",
                           "function_call": null,
                           "tool_calls": null
@@ -436,14 +436,14 @@
                         }
                       }
                     ],
-                    "created": 1711340528,
+                    "created": 1711361366,
                     "model": "gpt-4",
                     "object": "chat.completion",
                     "system_fingerprint": null,
                     "usage": {
-                      "completion_tokens": 259,
-                      "prompt_tokens": 1798,
-                      "total_tokens": 2057
+                      "completion_tokens": 255,
+                      "prompt_tokens": 1797,
+                      "total_tokens": 2052
                     },
                     "prompt_filter_results": [
                       {
@@ -469,42 +469,42 @@
                       }
                     ]
                   },
-                  "start_time": 1711300927.956593,
-                  "end_time": 1711300946.713005,
+                  "start_time": 1711321765.742889,
+                  "end_time": 1711321794.73414,
                   "error": null,
                   "children": [],
                   "node_name": null,
-                  "parent_id": "3509f26a-7a42-452f-81ef-cc7db50fa580",
-                  "id": "a5540c99-6ef9-4da9-b631-5c8288f80790",
+                  "parent_id": "3d11aa45-e09e-4a56-afc7-9c52072e4a6a",
+                  "id": "1edb303f-39a7-499a-8596-82302bbe97dd",
                   "system_metrics": {
-                    "completion_tokens": 259,
-                    "prompt_tokens": 1798,
-                    "total_tokens": 2057
+                    "completion_tokens": 255,
+                    "prompt_tokens": 1797,
+                    "total_tokens": 2052
                   }
                 }
               ],
               "node_name": "validate_sql_query",
               "parent_id": "",
-              "id": "3509f26a-7a42-452f-81ef-cc7db50fa580",
+              "id": "3d11aa45-e09e-4a56-afc7-9c52072e4a6a",
               "system_metrics": {
-                "completion_tokens": 259,
-                "prompt_tokens": 1798,
-                "total_tokens": 2057
+                "completion_tokens": 255,
+                "prompt_tokens": 1797,
+                "total_tokens": 2052
               }
             }
           ],
           "system_metrics": {
-            "duration": 86.625816,
-            "prompt_tokens": 3580,
-            "completion_tokens": 324,
-            "total_tokens": 3904
+            "duration": 97.086997,
+            "prompt_tokens": 3579,
+            "completion_tokens": 319,
+            "total_tokens": 3898
           },
           "inputs": {
             "user_query": "Show the CompanyName for all customers with an address in City 'Dallas'",
             "schema_name": "SalesLT"
           },
           "output": {
-            "output_prompt": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n"
+            "output_prompt": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n"
           },
           "error": null
         }
@@ -514,13 +514,13 @@
       "description": "",
       "tags": null,
       "system_metrics": {
-        "duration": 86.625816,
-        "prompt_tokens": 3580,
-        "completion_tokens": 324,
-        "total_tokens": 3904
+        "duration": 97.086997,
+        "prompt_tokens": 3579,
+        "completion_tokens": 319,
+        "total_tokens": 3898
       },
       "result": {
-        "output_prompt": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n"
+        "output_prompt": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n"
       },
       "upload_metrics": false
     }
@@ -528,8 +528,8 @@
   "node_runs": [
     {
       "node": "get_table_names",
-      "flow_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
-      "run_id": "75012942-c5a8-477d-939a-3d929fa09df7_get_table_names_0",
+      "flow_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
+      "run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_get_table_names_0",
       "status": "Completed",
       "inputs": {
         "sqlconn": "custom-sqlconn",
@@ -549,9 +549,9 @@
       ],
       "metrics": null,
       "error": null,
-      "parent_run_id": "75012942-c5a8-477d-939a-3d929fa09df7_0",
-      "start_time": "2024-03-25T04:21:00.094143Z",
-      "end_time": "2024-03-25T04:21:45.734734Z",
+      "parent_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_0",
+      "start_time": "2024-03-25T10:08:17.649943Z",
+      "end_time": "2024-03-25T10:09:02.295789Z",
       "index": 0,
       "api_calls": [
         {
@@ -573,13 +573,13 @@
             "SalesOrderDetail",
             "SalesOrderHeader"
           ],
-          "start_time": 1711300860.095144,
-          "end_time": 1711300905.733731,
+          "start_time": 1711321697.650165,
+          "end_time": 1711321742.295789,
           "error": null,
           "children": [],
           "node_name": "get_table_names",
           "parent_id": "",
-          "id": "c2cbbf0f-7c09-41b8-9992-0080a084100c",
+          "id": "d36d9f6a-4641-4756-a3df-2cbe5c47cd0f",
           "system_metrics": {}
         }
       ],
@@ -591,7 +591,7 @@
         "stderr": ""
       },
       "system_metrics": {
-        "duration": 45.640591
+        "duration": 44.645846
       },
       "result": [
         "Address",
@@ -608,8 +608,8 @@
     },
     {
       "node": "identify_table_llm",
-      "flow_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
-      "run_id": "75012942-c5a8-477d-939a-3d929fa09df7_identify_table_llm_0",
+      "flow_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
+      "run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_identify_table_llm_0",
       "status": "Completed",
       "inputs": {
         "deployment_name": "gpt-4",
@@ -630,12 +630,12 @@
           "SalesOrderHeader"
         ]
       },
-      "output": "['Customer', 'Address', 'CustomerAddress']",
+      "output": "['Address', 'Customer', 'CustomerAddress']",
       "metrics": null,
       "error": null,
-      "parent_run_id": "75012942-c5a8-477d-939a-3d929fa09df7_0",
-      "start_time": "2024-03-25T04:21:45.736791Z",
-      "end_time": "2024-03-25T04:21:47.352939Z",
+      "parent_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_0",
+      "start_time": "2024-03-25T10:09:02.295789Z",
+      "end_time": "2024-03-25T10:09:04.024885Z",
       "index": 0,
       "api_calls": [
         {
@@ -661,9 +661,9 @@
               "SalesOrderHeader"
             ]
           },
-          "output": "['Customer', 'Address', 'CustomerAddress']",
-          "start_time": 1711300905.737768,
-          "end_time": 1711300907.349071,
+          "output": "['Address', 'Customer', 'CustomerAddress']",
+          "start_time": 1711321742.295789,
+          "end_time": 1711321744.024885,
           "error": null,
           "children": [
             {
@@ -696,14 +696,14 @@
                 }
               },
               "output": {
-                "id": "chatcmpl-96W8AzO37921Uh2qxcvSUOWPuk928",
+                "id": "chatcmpl-96bYEWkQTGNGsRShnw545wMkaNiAF",
                 "choices": [
                   {
                     "finish_reason": "stop",
                     "index": 0,
                     "logprobs": null,
                     "message": {
-                      "content": "['Customer', 'Address', 'CustomerAddress']",
+                      "content": "['Address', 'Customer', 'CustomerAddress']",
                       "role": "assistant",
                       "function_call": null,
                       "tool_calls": null
@@ -728,7 +728,7 @@
                     }
                   }
                 ],
-                "created": 1711340506,
+                "created": 1711361342,
                 "model": "gpt-4",
                 "object": "chat.completion",
                 "system_fingerprint": null,
@@ -761,13 +761,13 @@
                   }
                 ]
               },
-              "start_time": 1711300905.744448,
-              "end_time": 1711300907.348721,
+              "start_time": 1711321742.295789,
+              "end_time": 1711321744.024885,
               "error": null,
               "children": [],
               "node_name": null,
-              "parent_id": "bb35fa04-15a1-4d9f-81b1-25d1027df54d",
-              "id": "7dc6880a-99cd-4d82-9ecc-2ab4e253a4af",
+              "parent_id": "92e9dd53-a2b0-410e-b9cc-d72caeabfed0",
+              "id": "914f3040-f143-4e33-aee6-d504ba89e5f6",
               "system_metrics": {
                 "completion_tokens": 10,
                 "prompt_tokens": 118,
@@ -777,7 +777,7 @@
           ],
           "node_name": "identify_table_llm",
           "parent_id": "",
-          "id": "bb35fa04-15a1-4d9f-81b1-25d1027df54d",
+          "id": "92e9dd53-a2b0-410e-b9cc-d72caeabfed0",
           "system_metrics": {
             "completion_tokens": 10,
             "prompt_tokens": 118,
@@ -796,26 +796,26 @@
         "completion_tokens": 10,
         "prompt_tokens": 118,
         "total_tokens": 128,
-        "duration": 1.616148
+        "duration": 1.729096
       },
-      "result": "['Customer', 'Address', 'CustomerAddress']"
+      "result": "['Address', 'Customer', 'CustomerAddress']"
     },
     {
       "node": "get_table_schema",
-      "flow_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
-      "run_id": "75012942-c5a8-477d-939a-3d929fa09df7_get_table_schema_0",
+      "flow_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
+      "run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_get_table_schema_0",
       "status": "Completed",
       "inputs": {
         "sqlconn": "custom-sqlconn",
-        "tables": "['Customer', 'Address', 'CustomerAddress']",
+        "tables": "['Address', 'Customer', 'CustomerAddress']",
         "schema_name": "SalesLT"
       },
       "output": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/",
       "metrics": null,
       "error": null,
-      "parent_run_id": "75012942-c5a8-477d-939a-3d929fa09df7_0",
-      "start_time": "2024-03-25T04:21:47.354007Z",
-      "end_time": "2024-03-25T04:22:03.530270Z",
+      "parent_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_0",
+      "start_time": "2024-03-25T10:09:04.024885Z",
+      "end_time": "2024-03-25T10:09:19.782791Z",
       "index": 0,
       "api_calls": [
         {
@@ -823,17 +823,17 @@
           "type": "Tool",
           "inputs": {
             "sqlconn": "custom-sqlconn",
-            "tables": "['Customer', 'Address', 'CustomerAddress']",
+            "tables": "['Address', 'Customer', 'CustomerAddress']",
             "schema_name": "SalesLT"
           },
           "output": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/",
-          "start_time": 1711300907.354536,
-          "end_time": 1711300923.53027,
+          "start_time": 1711321744.024885,
+          "end_time": 1711321759.781553,
           "error": null,
           "children": [],
           "node_name": "get_table_schema",
           "parent_id": "",
-          "id": "95179729-093e-45d7-8907-5b389eaee228",
+          "id": "2033bd1a-b106-432f-a720-212575167920",
           "system_metrics": {}
         }
       ],
@@ -841,18 +841,18 @@
       "cached_run_id": null,
       "cached_flow_run_id": null,
       "logs": {
-        "stdout": "[2024-03-25T04:21:47+0000] ['Customer', 'Address', 'CustomerAddress']\n",
+        "stdout": "[2024-03-25T10:09:04+0000] ['Address', 'Customer', 'CustomerAddress']\n",
         "stderr": ""
       },
       "system_metrics": {
-        "duration": 16.176263
+        "duration": 15.757906
       },
       "result": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/"
     },
     {
       "node": "generate_sql_query",
-      "flow_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
-      "run_id": "75012942-c5a8-477d-939a-3d929fa09df7_generate_sql_query_0",
+      "flow_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
+      "run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_generate_sql_query_0",
       "status": "Completed",
       "inputs": {
         "deployment_name": "gpt-4",
@@ -862,12 +862,12 @@
         },
         "table_schemainfo": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/"
       },
-      "output": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+      "output": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
       "metrics": null,
       "error": null,
-      "parent_run_id": "75012942-c5a8-477d-939a-3d929fa09df7_0",
-      "start_time": "2024-03-25T04:22:03.534267Z",
-      "end_time": "2024-03-25T04:22:07.951815Z",
+      "parent_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_0",
+      "start_time": "2024-03-25T10:09:19.783565Z",
+      "end_time": "2024-03-25T10:09:25.727272Z",
       "index": 0,
       "api_calls": [
         {
@@ -882,9 +882,9 @@
             },
             "table_schemainfo": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/"
           },
-          "output": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
-          "start_time": 1711300923.535276,
-          "end_time": 1711300927.950698,
+          "output": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+          "start_time": 1711321759.783565,
+          "end_time": 1711321765.727272,
           "error": null,
           "children": [
             {
@@ -917,14 +917,14 @@
                 }
               },
               "output": {
-                "id": "chatcmpl-96W8SBPADJ8iPDs8j4ZDfXnvgLSE3",
+                "id": "chatcmpl-96bYWSSBVYPE0I0BGdwHXxZpbDhhD",
                 "choices": [
                   {
                     "finish_reason": "stop",
                     "index": 0,
                     "logprobs": null,
                     "message": {
-                      "content": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+                      "content": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
                       "role": "assistant",
                       "function_call": null,
                       "tool_calls": null
@@ -949,14 +949,14 @@
                     }
                   }
                 ],
-                "created": 1711340524,
+                "created": 1711361360,
                 "model": "gpt-4",
                 "object": "chat.completion",
                 "system_fingerprint": null,
                 "usage": {
-                  "completion_tokens": 55,
+                  "completion_tokens": 54,
                   "prompt_tokens": 1664,
-                  "total_tokens": 1719
+                  "total_tokens": 1718
                 },
                 "prompt_filter_results": [
                   {
@@ -982,27 +982,27 @@
                   }
                 ]
               },
-              "start_time": 1711300923.541276,
-              "end_time": 1711300927.950698,
+              "start_time": 1711321759.783565,
+              "end_time": 1711321765.727272,
               "error": null,
               "children": [],
               "node_name": null,
-              "parent_id": "1255e527-5293-4a7a-8565-6bc4f4215c69",
-              "id": "dccbb5a6-ed15-4758-95e1-98655051721e",
+              "parent_id": "effbfd08-b9ae-411d-8b5d-b5f3da9aa061",
+              "id": "9ec8273a-6a22-4122-bacc-69161d1de3e2",
               "system_metrics": {
-                "completion_tokens": 55,
+                "completion_tokens": 54,
                 "prompt_tokens": 1664,
-                "total_tokens": 1719
+                "total_tokens": 1718
               }
             }
           ],
           "node_name": "generate_sql_query",
           "parent_id": "",
-          "id": "1255e527-5293-4a7a-8565-6bc4f4215c69",
+          "id": "effbfd08-b9ae-411d-8b5d-b5f3da9aa061",
           "system_metrics": {
-            "completion_tokens": 55,
+            "completion_tokens": 54,
             "prompt_tokens": 1664,
-            "total_tokens": 1719
+            "total_tokens": 1718
           }
         }
       ],
@@ -1014,17 +1014,17 @@
         "stderr": ""
       },
       "system_metrics": {
-        "completion_tokens": 55,
+        "completion_tokens": 54,
         "prompt_tokens": 1664,
-        "total_tokens": 1719,
-        "duration": 4.417548
+        "total_tokens": 1718,
+        "duration": 5.943707
       },
-      "result": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'"
+      "result": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'"
     },
     {
       "node": "validate_sql_query",
-      "flow_run_id": "75012942-c5a8-477d-939a-3d929fa09df7",
-      "run_id": "75012942-c5a8-477d-939a-3d929fa09df7_validate_sql_query_0",
+      "flow_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0",
+      "run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_validate_sql_query_0",
       "status": "Completed",
       "inputs": {
         "deployment_name": "gpt-4",
@@ -1033,14 +1033,14 @@
         },
         "table_schemainfo": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/",
         "user_query": "Show the CompanyName for all customers with an address in City 'Dallas'",
-        "sql_query": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'"
+        "sql_query": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'"
       },
-      "output": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n",
+      "output": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n",
       "metrics": null,
       "error": null,
-      "parent_run_id": "75012942-c5a8-477d-939a-3d929fa09df7_0",
-      "start_time": "2024-03-25T04:22:07.953375Z",
-      "end_time": "2024-03-25T04:22:26.715975Z",
+      "parent_run_id": "1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_0",
+      "start_time": "2024-03-25T10:09:25.727272Z",
+      "end_time": "2024-03-25T10:09:54.734140Z",
       "index": 0,
       "api_calls": [
         {
@@ -1054,12 +1054,12 @@
             },
             "table_schemainfo": "\nCREATE TABLE [SalesLT].[Address] (\n\t[AddressID] INTEGER NOT NULL IDENTITY(1,1), \n\t[AddressLine1] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[AddressLine2] NVARCHAR(60) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[City] NVARCHAR(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[StateProvince] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[CountryRegion] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PostalCode] NVARCHAR(15) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Address_AddressID] PRIMARY KEY ([AddressID])\n)\n\n/*\n3 rows from Address table:\nAddressID\tAddressLine1\tAddressLine2\tCity\tStateProvince\tCountryRegion\tPostalCode\trowguid\tModifiedDate\n9\t8713 Yosemite Ct.\tNone\tBothell\tWashington\tUnited States\t98011\t268af621-76d7-4c78-9441-144fd139821a\t2006-07-01 00:00:00\n11\t1318 Lasalle Street\tNone\tBothell\tWashington\tUnited States\t98011\t981b3303-aca2-49c7-9a96-fb670785b269\t2007-04-01 00:00:00\n25\t9178 Jumping St.\tNone\tDallas\tTexas\tUnited States\t75201\tc8df3bd9-48f0-4654-a8dd-14a67a84d3c6\t2006-09-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[CustomerAddress] (\n\t[CustomerID] INTEGER NOT NULL, \n\t[AddressID] INTEGER NOT NULL, \n\t[AddressType] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_CustomerAddress_CustomerID_AddressID] PRIMARY KEY ([CustomerID], [AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Address_AddressID] FOREIGN KEY([AddressID]) REFERENCES [SalesLT].[Address] ([AddressID]), \n\tCONSTRAINT [FK_CustomerAddress_Customer_CustomerID] FOREIGN KEY([CustomerID]) REFERENCES [SalesLT].[Customer] ([CustomerID])\n)\n\n/*\n3 rows from CustomerAddress table:\nCustomerID\tAddressID\tAddressType\trowguid\tModifiedDate\n29485\t1086\tMain Office\t16765338-dbe4-4421-b5e9-3836b9278e63\t2007-09-01 00:00:00\n29486\t621\tMain Office\t22b3e910-14af-4ed5-8b4d-23bbe757414d\t2005-09-01 00:00:00\n29489\t1069\tMain Office\ta095c88b-d7e6-4178-a078-2eca44214801\t2005-07-01 00:00:00\n*/\n\n\nCREATE TABLE [SalesLT].[Customer] (\n\t[CustomerID] INTEGER NOT NULL IDENTITY(1,1), \n\t[NameStyle] BIT NOT NULL DEFAULT ((0)), \n\t[Title] NVARCHAR(8) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[FirstName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[MiddleName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[LastName] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[Suffix] NVARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[CompanyName] NVARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[SalesPerson] NVARCHAR(256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[EmailAddress] NVARCHAR(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[Phone] NVARCHAR(25) COLLATE SQL_Latin1_General_CP1_CI_AS NULL, \n\t[PasswordHash] VARCHAR(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\t[PasswordSalt] VARCHAR(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL, \n\trowguid UNIQUEIDENTIFIER NOT NULL DEFAULT (newid()), \n\t[ModifiedDate] DATETIME NOT NULL DEFAULT (getdate()), \n\tCONSTRAINT [PK_Customer_CustomerID] PRIMARY KEY ([CustomerID])\n)\n\n/*\n3 rows from Customer table:\nCustomerID\tNameStyle\tTitle\tFirstName\tMiddleName\tLastName\tSuffix\tCompanyName\tSalesPerson\tEmailAddress\tPhone\tPasswordHash\tPasswordSalt\trowguid\tModifiedDate\n1\tFalse\tMr.\tOrlando\tN.\tGee\tNone\tA Bike Store\tadventure-works\\pamela0\torlando0@adventure-works.com\t245-555-0173\tL/Rlwxzp4w7RWmEgXX+/A7cXaePEPcp+KwQhl2fJL7w=\t1KjXYs4=\t3f5ae95e-b87d-4aed-95b4-c3797afcb74f\t2005-08-01 00:00:00\n2\tFalse\tMr.\tKeith\tNone\tHarris\tNone\tProgressive Sports\tadventure-works\\david8\tkeith0@adventure-works.com\t170-555-0127\tYPdtRdvqeAhj6wyxEsFdshBDNXxkCXn+CRgbvJItknw=\tfs1ZGhY=\te552f657-a9af-4a7d-a645-c429d6e02491\t2006-08-01 00:00:00\n3\tFalse\tMs.\tDonna\tF.\tCarreras\tNone\tAdvanced Bike Components\tadventure-works\\jillian0\tdonna0@adventure-works.com\t279-555-0130\tLNoK27abGQo48gGue3EBV/UrlYSToV0/s87dCRV7uJk=\tYTNH5Rw=\t130774b1-db21-4ef3-98c8-c104bcd6ed6d\t2005-09-01 00:00:00\n*/",
             "user_query": "Show the CompanyName for all customers with an address in City 'Dallas'",
-            "sql_query": "SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
+            "sql_query": "SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'",
             "stream": false
           },
-          "output": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n",
-          "start_time": 1711300927.953898,
-          "end_time": 1711300946.713979,
+          "output": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n",
+          "start_time": 1711321765.742889,
+          "end_time": 1711321794.73414,
           "error": null,
           "children": [
             {
@@ -1074,7 +1074,7 @@
                   },
                   {
                     "role": "user",
-                    "content": "Question: Show the CompanyName for all customers with an address in City 'Dallas'\nT-SQL Query: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\nValidatedQuery:\nExplaination:"
+                    "content": "Question: Show the CompanyName for all customers with an address in City 'Dallas'\nT-SQL Query: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\nValidatedQuery:\nExplaination:"
                   }
                 ],
                 "temperature": 1.0,
@@ -1092,14 +1092,14 @@
                 }
               },
               "output": {
-                "id": "chatcmpl-96W8WDnttNfcUObqerQRw6q1KL3C1",
+                "id": "chatcmpl-96bYcMOnAi4MhYia2R6jSQ16wokOj",
                 "choices": [
                   {
                     "finish_reason": "stop",
                     "index": 0,
                     "logprobs": null,
                     "message": {
-                      "content": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n",
+                      "content": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n",
                       "role": "assistant",
                       "function_call": null,
                       "tool_calls": null
@@ -1124,14 +1124,14 @@
                     }
                   }
                 ],
-                "created": 1711340528,
+                "created": 1711361366,
                 "model": "gpt-4",
                 "object": "chat.completion",
                 "system_fingerprint": null,
                 "usage": {
-                  "completion_tokens": 259,
-                  "prompt_tokens": 1798,
-                  "total_tokens": 2057
+                  "completion_tokens": 255,
+                  "prompt_tokens": 1797,
+                  "total_tokens": 2052
                 },
                 "prompt_filter_results": [
                   {
@@ -1157,27 +1157,27 @@
                   }
                 ]
               },
-              "start_time": 1711300927.956593,
-              "end_time": 1711300946.713005,
+              "start_time": 1711321765.742889,
+              "end_time": 1711321794.73414,
               "error": null,
               "children": [],
               "node_name": null,
-              "parent_id": "3509f26a-7a42-452f-81ef-cc7db50fa580",
-              "id": "a5540c99-6ef9-4da9-b631-5c8288f80790",
+              "parent_id": "3d11aa45-e09e-4a56-afc7-9c52072e4a6a",
+              "id": "1edb303f-39a7-499a-8596-82302bbe97dd",
               "system_metrics": {
-                "completion_tokens": 259,
-                "prompt_tokens": 1798,
-                "total_tokens": 2057
+                "completion_tokens": 255,
+                "prompt_tokens": 1797,
+                "total_tokens": 2052
               }
             }
           ],
           "node_name": "validate_sql_query",
           "parent_id": "",
-          "id": "3509f26a-7a42-452f-81ef-cc7db50fa580",
+          "id": "3d11aa45-e09e-4a56-afc7-9c52072e4a6a",
           "system_metrics": {
-            "completion_tokens": 259,
-            "prompt_tokens": 1798,
-            "total_tokens": 2057
+            "completion_tokens": 255,
+            "prompt_tokens": 1797,
+            "total_tokens": 2052
           }
         }
       ],
@@ -1189,12 +1189,12 @@
         "stderr": ""
       },
       "system_metrics": {
-        "completion_tokens": 259,
-        "prompt_tokens": 1798,
-        "total_tokens": 2057,
-        "duration": 18.7626
+        "completion_tokens": 255,
+        "prompt_tokens": 1797,
+        "total_tokens": 2052,
+        "duration": 29.006868
       },
-      "result": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] as c JOIN [SalesLT].[CustomerAddress] as ca ON c.CustomerID = ca.CustomerID JOIN [SalesLT].[Address] as a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query and use a read-only user role to execute before executing.\n\nThe question asks for the CompanyName of all customers with an address in the 'Dallas' city.\n\nThe given T-SQL query is accurate and doesn't require any changes.\n\n1. It starts by selecting the CompanyName column from the SalesLT.Customer table.\n\n2. It then joins the Customer table with the CustomerAddress table on the CustomerID field, which is the common identifier linking customers to their addresses. This brings in the address information for each customer.\n\n3. After joining CustomerAddress, it further joins this result with the Address table on the AddressID field, which contains the specific details of each address including the city.\n\n4. A 'WHERE' clause is then used to filter out the results to only include rows where the City column in the Address table is 'Dallas'. This narrows down the result to only include customers who have an address in Dallas.\n*/\n"
+      "result": "ValidatedQuery: SELECT c.CompanyName FROM [SalesLT].[Customer] c INNER JOIN [SalesLT].[CustomerAddress] ca ON c.CustomerID = ca.CustomerID INNER JOIN [SalesLT].[Address] a ON ca.AddressID = a.AddressID WHERE a.City = 'Dallas'\n\nExplaination: \n\n/*\nDisclaimer: Ensure you validate the query with a read-only user role to execute before executing.\n\nThe T-SQL query is intended to retrieve the company names of all customers who have an address in the city 'Dallas'. The query follows these steps:\n\n1. Use the INNER JOIN clause to combine rows from the `Customer`, `CustomerAddress` and `Address` tables, based on their logical relationships:\n    - `Customer.CustomerID` and `CustomerAddress.CustomerID`\n    - `CustomerAddress.AddressID` and `Address.AddressID`\n2. Use the WHERE clause to filter the results. Only rows where the Address.City column equals 'Dallas' are included in the results.\n3. The SELECT statement specifies `Customer.CompanyName` as the column to be returned in the result set. \n   \nSo, the overall query is joining three tables together to find the customer's company name where the customer has an address in the city of 'Dallas'.\n*/\n"
     }
   ]
 }

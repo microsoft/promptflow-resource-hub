@@ -1,13 +1,13 @@
-2024-03-25 15:21:00 +1100   35236 execution.flow     INFO     Start executing nodes in thread pool mode.
-2024-03-25 15:21:00 +1100   35236 execution.flow     INFO     Start to run 5 nodes with concurrency level 16.
-2024-03-25 15:21:00 +1100   35236 execution.flow     INFO     Executing node get_table_names. node run id: 75012942-c5a8-477d-939a-3d929fa09df7_get_table_names_0
-2024-03-25 15:21:45 +1100   35236 execution.flow     INFO     Node get_table_names completes.
-2024-03-25 15:21:45 +1100   35236 execution.flow     INFO     Executing node identify_table_llm. node run id: 75012942-c5a8-477d-939a-3d929fa09df7_identify_table_llm_0
-2024-03-25 15:21:47 +1100   35236 execution.flow     INFO     Node identify_table_llm completes.
-2024-03-25 15:21:47 +1100   35236 execution.flow     INFO     Executing node get_table_schema. node run id: 75012942-c5a8-477d-939a-3d929fa09df7_get_table_schema_0
-2024-03-25 15:21:47 +1100   35236 execution.flow     INFO     [get_table_schema in line 0 (index starts from 0)] stdout> ['Customer', 'Address', 'CustomerAddress']
-2024-03-25 15:22:03 +1100   35236 execution.flow     INFO     Node get_table_schema completes.
-2024-03-25 15:22:03 +1100   35236 execution.flow     INFO     Executing node generate_sql_query. node run id: 75012942-c5a8-477d-939a-3d929fa09df7_generate_sql_query_0
-2024-03-25 15:22:07 +1100   35236 execution.flow     INFO     Node generate_sql_query completes.
-2024-03-25 15:22:07 +1100   35236 execution.flow     INFO     Executing node validate_sql_query. node run id: 75012942-c5a8-477d-939a-3d929fa09df7_validate_sql_query_0
-2024-03-25 15:22:26 +1100   35236 execution.flow     INFO     Node validate_sql_query completes.
+2024-03-25 21:08:17 +1100   33844 execution.flow     INFO     Start executing nodes in thread pool mode.
+2024-03-25 21:08:17 +1100   33844 execution.flow     INFO     Start to run 5 nodes with concurrency level 16.
+2024-03-25 21:08:17 +1100   33844 execution.flow     INFO     Executing node get_table_names. node run id: 1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_get_table_names_0
+2024-03-25 21:09:02 +1100   33844 execution.flow     INFO     Node get_table_names completes.
+2024-03-25 21:09:02 +1100   33844 execution.flow     INFO     Executing node identify_table_llm. node run id: 1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_identify_table_llm_0
+2024-03-25 21:09:04 +1100   33844 execution.flow     INFO     Node identify_table_llm completes.
+2024-03-25 21:09:04 +1100   33844 execution.flow     INFO     Executing node get_table_schema. node run id: 1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_get_table_schema_0
+2024-03-25 21:09:04 +1100   33844 execution.flow     INFO     [get_table_schema in line 0 (index starts from 0)] stdout> ['Address', 'Customer', 'CustomerAddress']
+2024-03-25 21:09:19 +1100   33844 execution.flow     INFO     Node get_table_schema completes.
+2024-03-25 21:09:19 +1100   33844 execution.flow     INFO     Executing node generate_sql_query. node run id: 1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_generate_sql_query_0
+2024-03-25 21:09:25 +1100   33844 execution.flow     INFO     Node generate_sql_query completes.
+2024-03-25 21:09:25 +1100   33844 execution.flow     INFO     Executing node validate_sql_query. node run id: 1cd8ead8-5d30-47e2-89e8-9e6df66a71d0_validate_sql_query_0
+2024-03-25 21:09:54 +1100   33844 execution.flow     INFO     Node validate_sql_query completes.
