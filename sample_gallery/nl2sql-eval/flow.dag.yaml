@@ -1,0 +1,103 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  sql_groundtruth:
+    type: string
+    default: SELECT * FROM SalesLT.Product WHERE StandardCost < 300
+  sql_generated:
+    type: string
+    default: SELECT * FROM SalesLT.Product WHERE StandardCost <=  299
+outputs:
+  Exact_string_match:
+    type: string
+    reference: ${Exact_string_match.output}
+  Execution_accuracy:
+    type: string
+    reference: ${Execution_accuracy.output}
+  llms_score:
+    type: string
+    reference: ${Extract_score.output}
+  Vector_similarity_score:
+    type: string
+    reference: ${Vector_similarity.output}
+nodes:
+- name: Execution_accuracy
+  type: python
+  source:
+    type: code
+    path: execution_accuracy.py
+  inputs:
+    queried_data: ${Query_to_database.output}
+- name: Exact_string_match
+  type: python
+  source:
+    type: code
+    path: exact_string_match.py
+  inputs:
+    sql_groundtruth: ${inputs.sql_groundtruth}
+    sql_generated: ${inputs.sql_generated}
+- name: Aggregate
+  type: python
+  source:
+    type: code
+    path: aggregate.py
+  inputs:
+    execution_accuracy: ${Execution_accuracy.output}
+    exact_string_match: ${Exact_string_match.output}
+    vector_similarity: ${Vector_similarity.output}
+    llms_score: ${Extract_score.output}
+  aggregation: true
+- name: Query_to_database
+  type: python
+  source:
+    type: code
+    path: Query.py
+  inputs:
+    sql_groundtruth: ${inputs.sql_groundtruth}
+    sql_generated: ${inputs.sql_generated}
+    sqlconn: sqlconn
+- name: Evaluate_by_LLM
+  type: llm
+  source:
+    type: code
+    path: evaluate_by_llms.jinja2
+  inputs:
+    deployment_name: gpt-4
+    sql_groundtruth: ${inputs.sql_groundtruth}
+    sql_generated: ${inputs.sql_generated}
+  connection: aoai_pf
+  api: chat
+- name: embedding_groundtruth
+  type: python
+  source:
+    type: package
+    tool: promptflow.tools.embedding.embedding
+  inputs:
+    connection: aoai_pf
+    deployment_name: text-embedding-3-large
+    input: ${inputs.sql_groundtruth}
+- name: embedding_generated
+  type: python
+  source:
+    type: package
+    tool: promptflow.tools.embedding.embedding
+  inputs:
+    connection: aoai_pf
+    deployment_name: text-embedding-3-large
+    input: ${inputs.sql_generated}
+- name: Vector_similarity
+  type: python
+  source:
+    type: code
+    path: Vector_similarity.py
+  inputs:
+    groundtruth_embedding: ${embedding_groundtruth.output}
+    generated_embedding: ${embedding_generated.output}
+- name: Extract_score
+  type: python
+  source:
+    type: code
+    path: Extract_score.py
+  inputs:
+    llms_output: ${Evaluate_by_LLM.output}
