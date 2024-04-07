@@ -60,13 +60,21 @@ type: custom
 configs:
   Server_name: "tcp:<server-name>.database.windows.net,1433"
   User_name: "<sql-login-name>"
-  Database_name: "AdventureWorksLT"
+  Database_name: "<database-name>"
 secrets:
 # Don't replace the '<user-input>' placeholder. The application will prompt you to enter a value when it runs.
   Password: "<user-input>"
 ```
 
-Once the connections are created, modify the python and LLM nodes in the flow.dag.yaml with the appropriate connections names.
+**_NOTE:_**  
+
+ - Ensure connectivity to your Azure SQL Database. Ref: https://learn.microsoft.com/en-us/azure/azure-sql/database/connectivity-settings?view=azuresql&tabs=azure-portal
+ - Change version of the ODBC driver in get_table_names.py and get_table_schema.py based on the version installed in your machine/runtime.
+
+
+Once the connections are created, modify the python and LLM nodes in the flow.dag.yaml with the appropriate connections.
+
+###### For Example - 
 
 ###### get_table_names (python tool)
 
