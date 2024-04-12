@@ -1,6 +1,6 @@
 # Developing Natural Language to SQL Converter
 
-In this flow, we show how to use Azure OpenAI GPT-4 model and PromptFlow to facilitate this translation. The implementation is loosely based on the [LangChain SQL Database Agent](https://python.langchain.com/docs/use_cases/sql/quickstart)
+In this flow, we show how to develop a Natural Language to SQL Converter using Azure OpenAI GPT-4 model and PromptFlow. The implementation is loosely based on the [LangChain SQL Database Agent](https://python.langchain.com/docs/use_cases/sql/quickstart)
 
 #### Flow Overview:
 
