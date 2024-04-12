@@ -1,5 +1,0 @@
-{"sql_groundtruth": "SELECT Name FROM SalesLT.Product WHERE Color = 'Red' and Size = 62 and StandardCost < 300", "sql_generated": "SELECT Name FROM SalesLT.Product WHERE Color = 'Red' and Size = 62 and StandardCost < 300"}
-{"sql_groundtruth": "SELECT TOP(3) LastName, FirstName FROM SalesLT.Customer WHERE CustomerID < 4 ORDER BY CustomerID DESC", "sql_generated": "SELECT TOP(3) FirstName, LastName FROM SalesLT.Customer WHERE CustomerID < 4 ORDER BY CustomerID ASC"}
-{"sql_groundtruth": "SELECT * FROM SalesLT.Product WHERE StandardCost < 300", "sql_generated": "SELECT * FROM SalesLT.Product WHERE StandardCost <= 299"}
-{"sql_groundtruth": "SELECT FirstName, LastName FROM SalesLT.Customer", "sql_generated": "SELECT LastName, FirstName FROM SalesLT.Customer"}
-{"sql_groundtruth": "SELECT FirstName, LastName FROM SalesLT.Customer", "sql_generated": "select FirstName, LastName from SalesLT.Customer"}

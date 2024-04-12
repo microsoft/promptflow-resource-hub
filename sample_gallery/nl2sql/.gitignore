@@ -1,5 +1,0 @@
-# Ignore .promptflow folder
-.promptflow
-
-# Ignore __pycache__ folder
-__pycache__
