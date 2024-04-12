@@ -29,8 +29,9 @@ These instructions will get you a copy of the sample up and running using Prompt
    - (Local PromptFlow): Install the driver on the development machine
    - (Azure AI Studio): The Automatic Runtime doesn't contain the ODBC Driver, so you need to create a custom runtime with promptflow, pyodbc, and the driver installed. [Customize Runtime](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-manage-runtime)
 4. (Optional but highly recommended) Install and configure [Prompt flow for VS Code extension](https://marketplace.visualstudio.com/items?itemName=prompt-flow.prompt-flow) follow [Quick Start Guide](https://microsoft.github.io/promptflow/how-to-guides/quick-start.html).
-
    💡 This extension is optional but highly recommended for flow development and debugging.
+
+5. (Optional) If you use the output of [this sample development flow](../development/), you have to preprocess the output to extract sql queries becuase the output includes not only sql queries but also explanation.
 
 ### Connections Setup
 
