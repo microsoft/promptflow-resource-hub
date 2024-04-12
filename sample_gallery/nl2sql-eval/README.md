@@ -54,6 +54,11 @@ secrets:
   Password: "<user-input>"
 ```
 
+**_NOTE:_**
+
+- Ensure connectivity to your Azure SQL Database. Ref: https://learn.microsoft.com/en-us/azure/azure-sql/database/connectivity-settings?view=azuresql&tabs=azure-portal
+- Change version of the ODBC driver in get_table_names.py and get_table_schema.py based on the version installed in your machine/runtime.
+
 Once the connections are created, modify the python and LLM nodes in the flow.dag.yaml with the appropriate connections names.
 
 ###### Query_to_database (python tool)
