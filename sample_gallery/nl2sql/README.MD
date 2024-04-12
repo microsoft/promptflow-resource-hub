@@ -2,7 +2,7 @@
 
 NL2SQL (Natural Language to SQL) is a process that allows users to input queries in natural, human language and have them translated into SQL queries. This is particularly useful for users who may not be familiar with SQL syntax but need to retrieve data from a database.
 
-In this sample, we show how to use Azure OpenAI GPT-4 model and PromptFlow to facilitate this translation. The implementation is loosely based on the [LangChain SQL Database Agent](https://python.langchain.com/docs/use_cases/sql/quickstart)
+In this sample, we show how to develop NL2SQL and evaluate its performance.
 
 ## Sample flows
 
