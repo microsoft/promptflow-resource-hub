@@ -37,7 +37,7 @@ These instructions will get you a copy of the sample up and running using Prompt
 
 We need to setup 2 connections to run this sample. [Manage PromptFlow Connections](https://microsoft.github.io/promptflow/how-to-guides/manage-connections.html)
 
-1.  Azure OpenAI connection: Create a connection to you Azure OpenAI endpoint with a GPT-4 Model deployment.
+1.  Azure OpenAI connection: Create a connection to you Azure OpenAI endpoint with a GPT-4 Model deployment. For the evaluation sample, you will also need an text-embedding-ada-002 deployment
 2.  Custom Connection: Create a custom connection for the Azure SQL Database. Sample YAML
 
 ```YML
@@ -47,7 +47,7 @@ type: custom
 configs:
   Server_name: "tcp:<server-name>.database.windows.net,1433"
   User_name: "<sql-login-name>"
-  Database_name: "AdventureWorksLT"
+  Database_name: "<database-name>"
 secrets:
 # Don't replace the '<user-input>' placeholder. The application will prompt you to enter a value when it runs.
   Password: "<user-input>"
@@ -59,6 +59,8 @@ secrets:
 - Change version of the ODBC driver in get_table_names.py and get_table_schema.py based on the version installed in your machine/runtime.
 
 Once the connections are created, modify the python and LLM nodes in the flow.dag.yaml with the appropriate connections names.
+
+###### For Example -
 
 ###### Query_to_database (python tool)
 
@@ -94,6 +96,16 @@ Once the connections are created, modify the python and LLM nodes in the flow.da
 
 ![Sample Flow Run](./media/evaluation_flow_run_sample.png)
 
+#### Batch Evaluation
+
+To run a batch evaluation you need the generated SQL queries from the development flow and corresponding ground truth SQL queries to compare against. We have added a sample golden dataset file (sample-groundtruth-sql.jsonl) in the folder with user queries from the development flow and their corresponding T-SQL queries for this purpose.
+
+Follow the guidance here - https://microsoft.github.io/promptflow/how-to-guides/run-and-evaluate-a-flow/index.html#run-evaluation-flow-against-run
+
 ### Important Notes
 
 - This sample is not intended for production.
+
+
+###### Credits - 
+Sample queries and T-SQL queries - https://github.com/keilorg/sqlzoo-solutions/blob/main/16%20AdventureWorks.sql
