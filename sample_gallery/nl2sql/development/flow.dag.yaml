@@ -9,7 +9,10 @@ inputs:
     type: string
     default: SalesLT
 outputs:
-  output_prompt:
+  output_sql:
+    type: string
+    reference: ${generate_sql_query.output}
+  output_validated_sql:
     type: string
     reference: ${validate_sql_query.output}
 nodes:

@@ -25,7 +25,7 @@ def query_to_database(
 async def get_values(query: str, sqlconn: CustomConnection) -> Tuple[str, Any]:
     print("connecting to database")
     with pyodbc.connect(
-        "Driver={ODBC Driver 18 for SQL Server};Server="
+        "Driver={ODBC Driver 17 for SQL Server};Server="
         + sqlconn.configs["Server_name"]
         + ";Database="
         + sqlconn.configs["Database_name"]
