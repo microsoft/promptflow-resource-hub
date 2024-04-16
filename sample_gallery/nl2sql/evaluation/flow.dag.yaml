@@ -56,7 +56,7 @@ nodes:
   inputs:
     sql_groundtruth: ${inputs.sql_groundtruth}
     sql_generated: ${inputs.sql_generated}
-    sqlconn: sqlconn
+    sqlconn: custom-sqlconn
 - name: Evaluate_by_LLM
   type: llm
   source:
@@ -66,7 +66,7 @@ nodes:
     deployment_name: gpt-4
     sql_groundtruth: ${inputs.sql_groundtruth}
     sql_generated: ${inputs.sql_generated}
-  connection: aoai_pf
+  connection: azure_openai_connection
   api: chat
 - name: embedding_groundtruth
   type: python
@@ -74,8 +74,8 @@ nodes:
     type: package
     tool: promptflow.tools.embedding.embedding
   inputs:
-    connection: aoai_pf
-    deployment_name: text-embedding-3-large
+    connection: azure_openai_connection
+    deployment_name: text-embedding-ada-002
     input: ${inputs.sql_groundtruth}
 - name: embedding_generated
   type: python
@@ -83,8 +83,8 @@ nodes:
     type: package
     tool: promptflow.tools.embedding.embedding
   inputs:
-    connection: aoai_pf
-    deployment_name: text-embedding-3-large
+    connection: azure_openai_connection
+    deployment_name: text-embedding-ada-002
     input: ${inputs.sql_generated}
 - name: Vector_similarity
   type: python

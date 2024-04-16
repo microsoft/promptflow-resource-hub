@@ -108,8 +108,15 @@ Once the connections are created, modify the python and LLM nodes in the flow.da
 
 ![Sample Flow Run](./media/flow_run_sample.png)
 
+#### Batch Run
+
+[test-inputs.jsonl](./test-inputs.jsonl) contains a list of sample inputs to execute a batch run against. You can use the outputs from the batch run as inputs to execute batch evaluation on a set of user queries.
+
 ### Important Notes
 
 - This sample is not intended for production.
 - Given approach only works when the Table and Column names in the Database are descriptive enough and can be mapped through the natural language query.
 - Be descriptive in the ask. Explicitly call out the column names and relationships where possible to be able to generate accurate queries.
+
+###### Credits - 
+Sample queries - https://github.com/keilorg/sqlzoo-solutions/blob/main/16%20AdventureWorks.sql
