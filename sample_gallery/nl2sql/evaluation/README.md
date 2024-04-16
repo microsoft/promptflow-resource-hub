@@ -98,7 +98,9 @@ Once the connections are created, modify the python and LLM nodes in the flow.da
 
 #### Batch Evaluation
 
-To run a batch evaluation you need the generated SQL queries from the development flow and corresponding ground truth SQL queries to compare against. We have added a sample golden dataset file (sample-groundtruth-sql.jsonl) in the folder with user queries from the development flow and their corresponding T-SQL queries for this purpose.
+To run a batch evaluation you need the generated SQL queries from the development flow and corresponding ground truth SQL queries to compare against. We have added the following sample golden dataset files:
+- sample-groundtruth-sql.jsonl: user queries from the development flow, and their corresponding groundtruth T-SQL queries for this purpose.
+- sample-groundtruth-and-generated-sql.jsonl: user queries from the development flow, their corresponding groundtruth T-SQL queries for this purpose, and generated T-SQL queries from the development flow.
 
 Follow the guidance here - https://microsoft.github.io/promptflow/how-to-guides/run-and-evaluate-a-flow/index.html#run-evaluation-flow-against-run
 
