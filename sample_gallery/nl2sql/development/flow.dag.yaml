@@ -1,0 +1,75 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  user_query:
+    type: string
+    default: Show the CompanyName for all customers with an address in City 'Dallas'
+  schema_name:
+    type: string
+    default: SalesLT
+outputs:
+  output_sql:
+    type: string
+    reference: ${generate_sql_query.output}
+  output_validated_sql:
+    type: string
+    reference: ${validate_sql_query.output}
+nodes:
+- name: get_table_names
+  type: python
+  source:
+    type: code
+    path: get_table_names.py
+  inputs:
+    sqlconn: custom-sqlconn
+    schema_name: ${inputs.schema_name}
+- name: identify_table_llm
+  type: llm
+  source:
+    type: code
+    path: identify_table_llm.jinja2
+  inputs:
+    deployment_name: gpt-4
+    response_format:
+      type: text
+    user_query: ${inputs.user_query}
+    table_names: ${get_table_names.output}
+  connection: azure_openai_connection
+  api: chat
+- name: get_table_schema
+  type: python
+  source:
+    type: code
+    path: get_table_schema.py
+  inputs:
+    sqlconn: custom-sqlconn
+    tables: ${identify_table_llm.output}
+    schema_name: ${inputs.schema_name}
+- name: generate_sql_query
+  type: llm
+  source:
+    type: code
+    path: generate_sql_query.jinja2
+  inputs:
+    deployment_name: gpt-4
+    user_query: ${inputs.user_query}
+    response_format:
+      type: text
+    table_schemainfo: ${get_table_schema.output}
+  connection: azure_openai_connection
+  api: chat
+- name: validate_sql_query
+  type: llm
+  source:
+    type: code
+    path: validate_sql_query.jinja2
+  inputs:
+    deployment_name: gpt-4
+    response_format:
+      type: text
+    table_schemainfo: ${get_table_schema.output}
+    user_query: ${inputs.user_query}
+    sql_query: ${generate_sql_query.output}
+  connection: azure_openai_connection
+  api: chat
