@@ -48,7 +48,7 @@ if __name__ == "__main__":
         data=data,
         column_mapping={
             "question": "${data.question}",
-            "directory": "rag/chroma_db",
+            "directory": "chroma_db",
         },
         stream=True,
     )

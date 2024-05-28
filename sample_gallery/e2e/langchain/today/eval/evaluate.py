@@ -15,8 +15,7 @@ from promptflow.core._flow import Prompty
 from promptflow.connections import AzureOpenAIConnection
 from promptflow.tools.aoai import AzureOpenAI
 
-import rag_paths
-from rag_flexflow import rag_chain
+
 
 import bs4
 from langchain import hub
@@ -82,6 +81,9 @@ class QnAEvaluator:
 
 if __name__ == "__main__":
     from promptflow.tracing import start_trace
+
+    import rag_paths
+    from rag_flexflow import rag_chain
 
     start_trace()
     model_config = AzureOpenAIModelConfiguration(

@@ -68,7 +68,7 @@ if __name__ == "__main__":
         data=data,
         column_mapping={
             "question": "${data.question}",
-            "directory": "rag/chroma_db",
+            "directory": "chroma_db",
         },
         environment_variables={
         "AZURE_OPENAI_API_KEY": "${yijun-aoai.api_key}",
