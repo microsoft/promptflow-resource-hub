@@ -1,0 +1,13 @@
+langchain 
+langchain-community 
+langchainhub 
+langchain-openai 
+chromadb 
+bs4
+
+python-dotenv
+promptflow
+ragas
+numpy
+unstructured
+markdown
