@@ -44,10 +44,10 @@ Flex flow is a concept in prompt flow, the target user is engineers, the core id
 
 To chat with your application, you should covert your application into a flex flow, which is to build a [flow.flex.yaml](./flow.flex.yaml) file with entry file and entry function specified.
 
-Then you can chat with your application by running the following command:
+Then you can chat with your application by running the following command, which will create a yaml file for you automatically:
 
 ```bash
-pf flow test --flow <path-to-flow.flex.yaml-directory> --ui
+pf flow test --flow rag_flexflow:generate --ui
 ```
 
 Then you will be able to access the chat interface in your browser.
