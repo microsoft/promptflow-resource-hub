@@ -2,6 +2,8 @@
 
 ## Prerequisite: setup environment
 
+**Install the VS Code in your local**
+
 Install the required packages from [requirements.txt](./requirements.txt) by running the following command:
 
 ```bash
