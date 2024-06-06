@@ -64,6 +64,10 @@ Now you can chat with your application by sending the input to the chat interfac
 Set trace destination to Azure AI project by running the following command:
 
 ```bash
+az login
+```
+
+```bash
 pf config set trace.destination="azureml://subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-or-project-name>"
 ```
 
