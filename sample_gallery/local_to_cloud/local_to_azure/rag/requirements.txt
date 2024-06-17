@@ -1,0 +1,8 @@
+langchain-openai==0.1.3
+chromadb==0.4.24
+python-dotenv
+promptflow[azure]
+bs4
+langchain 
+langchain-community 
+langchainhub 

@@ -1,0 +1,11 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+entry: rag_flexflow:generate
+environment:
+  python_requirements_txt: requirements.txt
+environment_variables:
+  AZURE_OPENAI_API_KEY: ${yijun-aoai.api_key}
+  AZURE_OPENAI_ENDPOINT: ${yijun-aoai.api_base}
+  AZURE_OPENAI_API_TYPE: azure
+  AZURE_OPENAI_API_VERSION: 2024-02-15-preview
+  AZURE_OPENAI_CHAT_DEPLOYMENT: gpt-4-32k
+  AZURE_OPENAI_EMBEDDING_DEPLOYMENT: text-embedding-ada-002

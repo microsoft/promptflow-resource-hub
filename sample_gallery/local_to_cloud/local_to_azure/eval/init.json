@@ -1,0 +1,6 @@
+{
+    "model_config": {
+        "connection": "yijun-aoai",
+        "azure_deployment": "gpt-4-32k"
+    }
+}
