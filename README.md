@@ -6,6 +6,7 @@ Here are some common use cases that we've facilitated:
 
 * [**Evaluate semantic kernel planner**](./sample_gallery/evaluate_semantic_kernel_planner/Tutorial.md): This case demonstrates the evaluation of the Semantic Kernel Planner for superior control over AI agent's generation.
 * [**Personalized Financial advise using banking customer data on PostgreSQL/CosmosDB**](./sample_gallery/database_querying/cosmosdb_postgresql/Tutorial.md): This example demonstrates how to connect to a CosmosDB database, query data, and use the retrieved information as a reference for AI-generated financial advice.
+* [**Natural Language to SQL**](./sample_gallery/nl2sql/README.MD): This is an example for implementing Natural Language to SQL code generation on a sample database using PromptFlow and performing evaluation.
 
 In addition, we also provide best practices for:
 

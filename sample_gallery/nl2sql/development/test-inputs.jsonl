@@ -1,0 +1,10 @@
+{"user_query": "Show the first name and the email address of customer with CompanyName 'Bike World'", "schema_name": "SalesLT"}
+{"user_query": "Give the CompanyName of those customers with orders over $100000. Include the subtotal plus tax plus freight.", "schema_name": "SalesLT"}
+{"user_query": "Show the SalesOrderID and the UnitPrice for every Single Item Order.", "schema_name": "SalesLT"}
+{"user_query": "Show the product description for culture 'fr' for product with ProductID 736.", "schema_name": "SalesLT"}
+{"user_query": "How many products in ProductCategory 'Cranksets' have been sold to an address in 'London'?", "schema_name": "SalesLT"}
+{"user_query": "For every customer with a 'Main Office' in Dallas show AddressLine1 of the 'Main Office' and AddressLine1 of the 'Shipping' address. If there is no shipping address leave it blank. Use one row per customer.", "schema_name": "SalesLT"}
+{"user_query": "Show the best selling item by value.", "schema_name": "SalesLT"}
+{"user_query": "Identify the three most important cities. Show the break down of top level product category against city.", "schema_name": "SalesLT"}
+{"user_query": "Find the best customer in each region.", "schema_name": "SalesLT"}
+{"user_query": "Show the total order value for each CountryRegion. List by value with the highest first.", "schema_name": "SalesLT"}
